@@ -25,6 +25,10 @@ namespace jasmine_headless_webkit_dotnet
         public VerbosityLevel VerbosityLevel { get; set; }
         [Description("Weather to run the server. Defaults to false.")]
         public bool RunServer { get; set; }
+        [Description("Javascript files to test.")]
+        public string[] TestFiles { get; set; }
+        [Description("Javascript source files.")]
+        public string[] SourceFiles { get; set; }
 
         public int GetPort()
         {

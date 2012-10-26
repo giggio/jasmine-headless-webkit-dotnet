@@ -40,6 +40,7 @@
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
@@ -59,7 +60,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="OneTestPassesWithoutServer.cs" />
+    <Compile Include="OneTestPassesWithoutServerWithJsFile.cs" />
+    <Compile Include="OneTestPassesWithoutServerWithHtmlFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,12 +70,14 @@
       <Minify>True</Minify>
       <Bare>False</Bare>
       <Iced>False</Iced>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="JasmineTests\ScriptTests\calculatorSumPassSpec.coffee">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <Bare>False</Bare>
       <Iced>False</Iced>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\MIT.LICENSE" />
     <None Include="packages.config" />
@@ -85,22 +89,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JasmineTests\OneSpecPass1.2.0.html" />
-    <Content Include="JasmineTests\OneSpecPass1.1.0.html" />
+    <Content Include="JasmineTests\OneSpecPass1.2.0.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\OneSpecPass1.1.0.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="JasmineTests\Scripts\Calculator.js">
       <DependentUpon>calculator.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JasmineTests\ScriptTests\calculatorSumPassSpec.js">
       <DependentUpon>calculatorSumPassSpec.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine-html.js" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.css" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.js" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine_favicon.png" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine-html.js" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.css" />
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.js" />
-    <Content Include="JasmineTests\ScriptTests\lib\phantom-jasmine\console-runner.js" />
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine-html.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine_favicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine-html.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\lib\phantom-jasmine\console-runner.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

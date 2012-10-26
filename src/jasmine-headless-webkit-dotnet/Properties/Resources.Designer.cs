@@ -61,6 +61,155 @@ namespace jasmine_headless_webkit_dotnet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /**
+        /// Jasmine Reporter that outputs test results to the browser console. 
+        /// Useful for running in a headless environment such as PhantomJs, ZombieJs etc.
+        ///
+        /// Usage:
+        /// // From your html file that loads jasmine:  
+        /// jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
+        /// jasmine.getEnv().execute();
+        ///*/
+        ///
+        ///(function (jasmine, console) {
+        ///  if (!jasmine) {
+        ///    throw &quot;jasmine library isn&apos;t loaded!&quot;;
+        ///  }
+        ///
+        ///  var ANSI = {}
+        ///  ANSI.color_map = {
+        ///      &quot;green&quot; : 32,
+        ///      &quot;red&quot;   : 31
+        ///  }
+        ///
+        ///  ANSI.colo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _110_console_runner_js {
+            get {
+                return ResourceManager.GetString("_110_console_runner_js", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///  font-family: &quot;Helvetica Neue Light&quot;, &quot;Lucida Grande&quot;, &quot;Calibri&quot;, &quot;Arial&quot;, sans-serif;
+        ///}
+        ///
+        ///
+        ///.jasmine_reporter a:visited, .jasmine_reporter a {
+        ///  color: #303; 
+        ///}
+        ///
+        ///.jasmine_reporter a:hover, .jasmine_reporter a:active {
+        ///  color: blue; 
+        ///}
+        ///
+        ///.run_spec {
+        ///  float:right;
+        ///  padding-right: 5px;
+        ///  font-size: .8em;
+        ///  text-decoration: none;
+        ///}
+        ///
+        ///.jasmine_reporter {
+        ///  margin: 0 5px;
+        ///}
+        ///
+        ///.banner {
+        ///  color: #303;
+        ///  background-color: #fef;
+        ///  padding: 5px;
+        ///}
+        ///
+        ///.logo {
+        ///  float: left;
+        ///  font-size: 1.1em;
+        ///  padding-left: 5px [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _110_jasmine_css {
+            get {
+                return ResourceManager.GetString("_110_jasmine_css", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jasmine.TrivialReporter = function(doc) {
+        ///  this.document = doc || document;
+        ///  this.suiteDivs = {};
+        ///  this.logRunningSpecs = false;
+        ///};
+        ///
+        ///jasmine.TrivialReporter.prototype.createDom = function(type, attrs, childrenVarArgs) {
+        ///  var el = document.createElement(type);
+        ///
+        ///  for (var i = 2; i &lt; arguments.length; i++) {
+        ///    var child = arguments[i];
+        ///
+        ///    if (typeof child === &apos;string&apos;) {
+        ///      el.appendChild(document.createTextNode(child));
+        ///    } else {
+        ///      if (child) { el.appendChild(child); }
+        ///    }
+        ///  }
+        ///
+        ///  for (var [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _110_jasmine_html_js {
+            get {
+                return ResourceManager.GetString("_110_jasmine_html_js", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var isCommonJS = typeof window == &quot;undefined&quot;;
+        ///
+        ////**
+        /// * Top level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.
+        /// *
+        /// * @namespace
+        /// */
+        ///var jasmine = {};
+        ///if (isCommonJS) exports.jasmine = jasmine;
+        ////**
+        /// * @private
+        /// */
+        ///jasmine.unimplementedMethod_ = function() {
+        ///  throw new Error(&quot;unimplemented method&quot;);
+        ///};
+        ///
+        ////**
+        /// * Use &lt;code&gt;jasmine.undefined&lt;/code&gt; instead of &lt;code&gt;undefined&lt;/code&gt;, since &lt;code&gt;undefined&lt;/code&gt; is just
+        /// * a plain old variable and may be redefined by somebody else.
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _110_jasmine_js {
+            get {
+                return ResourceManager.GetString("_110_jasmine_js", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;  &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Jasmine Spec Runner&lt;/title&gt;
+        ///
+        ///    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;jasmine.css&quot;&gt;
+        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;jasmine.js&quot;&gt;&lt;/script&gt;
+        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;jasmine-html.js&quot;&gt;&lt;/script&gt;
+        ///    &lt;script type=&quot;text/javascript&quot; src=&quot;console-runner.js&quot;&gt;&lt;/script&gt;
+        ///    &lt;!-- include source files here... --&gt;
+        ///    {0}
+        ///
+        ///    &lt;!-- include spec files he [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _110_test_html {
+            get {
+                return ResourceManager.GetString("_110_test_html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] phantomjs_exe {

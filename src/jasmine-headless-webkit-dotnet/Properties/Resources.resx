@@ -124,4 +124,19 @@
   <data name="run_jasmine_test_coffee" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\tools\run_jasmine_test.coffee;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="_110_console_runner_js" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tools\jasmine-1.1.0\console-runner.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_110_jasmine_css" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tools\jasmine-1.1.0\jasmine.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_110_jasmine_html_js" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tools\jasmine-1.1.0\jasmine-html.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_110_jasmine_js" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tools\jasmine-1.1.0\jasmine.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_110_test_html" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\tools\jasmine-1.1.0\test.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>
