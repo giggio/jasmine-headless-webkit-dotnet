@@ -6,7 +6,7 @@ using jasmine_headless_webkit_dotnet;
 
 namespace Tests
 {
-    [TestClass, NUnit.Framework.Ignore]
+    [TestClass, Ignore]
     public class OneTestPassesWithoutServerWithJsFile
     {
         private bool runSucceeded;

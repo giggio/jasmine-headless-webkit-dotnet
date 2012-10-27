@@ -43,8 +43,9 @@ namespace jasmine_headless_webkit_dotnet
 
         public bool IsConsistent()
         {
-            if (string.IsNullOrEmpty(Directory)) return false;
-            if (string.IsNullOrEmpty(FileName)) return false;
+            if ((string.IsNullOrEmpty(Directory) || string.IsNullOrEmpty(FileName)) && 
+            ((TestFiles == null || TestFiles.Length == 0) || (SourceFiles == null || SourceFiles.Length == 0)))
+                return false;
             return true;
         }
 

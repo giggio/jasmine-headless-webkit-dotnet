@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arguments.cs" />
+    <Compile Include="ArrayOfStringConverter.cs" />
     <Compile Include="PhantomJSRunStragegy.cs" />
     <Compile Include="LocalEnvironment.cs" />
     <Compile Include="PhantomJS.cs" />

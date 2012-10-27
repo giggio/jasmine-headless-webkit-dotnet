@@ -1,10 +1,15 @@
-﻿namespace jasmine_headless_webkit_dotnet
+﻿using Args;
+
+namespace jasmine_headless_webkit_dotnet
 {
     public class Program
     {
         static int Main(string[] argumentsArray)
         {
-            var args = Args.Configuration.Configure<Arguments>().CreateAndBind(argumentsArray);
+            var args = Args.Configuration.Configure<Arguments>().AsFluent()
+                .ParsesArgumentsWith(typeof(string[]), new ArrayOfStringConverter())
+                .Initialize()
+                .CreateAndBind(argumentsArray);
             if (!args.IsConsistent())
             {
                 args.WriteHelp();
