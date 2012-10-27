@@ -23,19 +23,20 @@ namespace jasmine_headless_webkit_dotnet
             try
             {
                 var phantomArgs = BuildArgs();
-                
+
                 var phantomProcess = new Process
                 {
-                    StartInfo = new ProcessStartInfo(
-                        phantomFileLocation,
-                        phantomArgs)
+                    StartInfo = new ProcessStartInfo(phantomFileLocation, phantomArgs)
+                        {RedirectStandardOutput = true, UseShellExecute = false, CreateNoWindow = true}
                 };
+                phantomProcess.OutputDataReceived += (sender, args) => { Console.WriteLine(args.Data); };
                 Debug.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
                 if (verbosityLevel > VerbosityLevel.Verbose)
                 {
                     Console.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
                 }
                 phantomProcess.Start();
+                phantomProcess.BeginOutputReadLine();
                 var exited = phantomProcess.WaitForExit(timeOut * 1000);
                 if (!exited)
                 {
