@@ -24,12 +24,15 @@ namespace Tests
                     FileName = "OneSpecPass1.1.0.html"
                 };
             var environment = new LocalEnvironment();
-            var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(), args.Directory, args.FileName),
-                new WebServer(),
-                new Tools(environment),
-                args);
-            runSucceeded = test.Run();
+            using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
+            {
+                var test = new Test(
+                    new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
+                                  args.Directory, args.FileName),
+                    webServer,
+                    new Tools(environment));
+                runSucceeded = test.Run();
+            }
         }
 
         [TestMethod]

@@ -27,12 +27,15 @@ namespace Tests
                     TestFiles = testFiles
                 };
             var environment = new LocalEnvironment();
-            var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(), args.SourceFiles, args.TestFiles),
-                new WebServer(),
-                new Tools(environment),
-                args);
-            runSucceeded = test.Run();
+            using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
+            {
+                var test = new Test(
+                    new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
+                                  args.SourceFiles, args.TestFiles),
+                    webServer,
+                    new Tools(environment));
+                runSucceeded = test.Run();
+            }
         }
 
         [TestMethod]

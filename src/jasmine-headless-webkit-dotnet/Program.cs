@@ -4,6 +4,11 @@ namespace jasmine_headless_webkit_dotnet
 {
     public class Program
     {
+        private readonly ILocalEnvironment environment;
+        private readonly IWebServer webServer;
+        private readonly ITools tools;
+        private readonly IPhantomJS phantomJS;
+
         static int Main(string[] argumentsArray)
         {
             var args = Args.Configuration.Configure<Arguments>().AsFluent()
@@ -16,13 +21,33 @@ namespace jasmine_headless_webkit_dotnet
                 return 1;
             }
             var environment = new LocalEnvironment();
+            using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
+            {
+                var program = new Program(environment,
+                    webServer,
+                    new Tools(environment),
+                    new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(), args.Directory, args.FileName));
+                var runSucceeded = program.Run();
+                return runSucceeded ? 0 : 1;
+            }
+        }
+
+        public Program(ILocalEnvironment environment, IWebServer webServer, ITools tools, IPhantomJS phantomJS)
+        {
+            this.environment = environment;
+            this.webServer = webServer;
+            this.tools = tools;
+            this.phantomJS = phantomJS;
+        }
+
+        public bool Run()
+        {
             var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(), args.Directory, args.FileName), 
-                new WebServer(), 
-                new Tools(environment), 
-                args);
+                phantomJS,
+                webServer,
+                tools);
             var runSucceeded = test.Run();
-            return runSucceeded ? 0 : 1;
+            return runSucceeded;
         }
     }
 }
