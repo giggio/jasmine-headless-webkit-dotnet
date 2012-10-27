@@ -30,6 +30,18 @@ namespace jasmine_headless_webkit_dotnet
         [Description("Javascript source files.")]
         public string[] SourceFiles { get; set; }
 
+        public RunType RunType
+        {
+            get
+            {
+                if (SourceFiles != null && SourceFiles.Length > 0)
+                {
+                    return RunType.JSFiles;
+                }
+                return RunType.HtmlFile;
+            }
+        }
+
         public int GetPort()
         {
             return Port ?? new Random().Next(5000, 9000);
