@@ -80,6 +80,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="WrongSyntaxJSFileFails.cs" />
+    <Compile Include="OneTestPassesWithoutServerWithCoffeeScriptFile.cs" />
     <Compile Include="OneTestPassesWithoutServerWithJsFile.cs" />
     <Compile Include="OneTestPassesWithoutServerWithHtmlFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +129,9 @@
       <DependentUpon>calculatorSumPassSpec.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="JasmineTests\ScriptTests\WrongSyntax2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine-html.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,6 +156,9 @@
     <Content Include="JasmineTests\ScriptTests\lib\phantom-jasmine\console-runner.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="JasmineTests\ScriptTests\WrongSyntax.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

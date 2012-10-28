@@ -13,6 +13,11 @@
             this.tools = tools;
         }
 
+        public int NumberOfSuccesses
+        {
+            get { return phantomJS.NumberOfSuccesses; }
+        }
+
         public bool Run()
         {
             tools.Hidrate();

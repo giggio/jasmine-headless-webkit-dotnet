@@ -7,17 +7,16 @@ using jasmine_headless_webkit_dotnet;
 namespace Tests
 {
     [TestClass]
-    public class OneTestPassesWithoutServerWithJsFile
+    public class WrongSyntaxJSFileFails
     {
         private bool runSucceeded;
-        private Test test;
 
         [TestInitialize]
         public void RunFiles()
         {
-            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.js");
+            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "WrongSyntax.js");
             var sourceFiles = new[] {sourceFile};
-            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.js");
+            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "WrongSyntax.js");
             var testFiles = new[] {testFile};
             var args = new Arguments
                 {
@@ -30,7 +29,7 @@ namespace Tests
             var environment = new LocalEnvironment();
             using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
             {
-                test = new Test(
+                var test = new Test(
                     new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
                                   args.SourceFiles, args.TestFiles),
                     webServer,
@@ -42,14 +41,7 @@ namespace Tests
         [TestMethod]
         public void VerifyPass()
         {
-            runSucceeded.Should().BeTrue();
+            runSucceeded.Should().BeFalse();
         }
-
-        [TestMethod]
-        public void NumberOfSuccessesShouldBe1()
-        {
-            test.NumberOfSuccesses.Should().Be(1);
-        }
-
     }
 }

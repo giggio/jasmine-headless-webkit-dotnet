@@ -6,18 +6,17 @@ using jasmine_headless_webkit_dotnet;
 
 namespace Tests
 {
-    [TestClass]
-    public class OneTestPassesWithoutServerWithJsFile
+    [TestClass, Ignore]
+    public class OneTestPassesWithoutServerWithCoffeeScriptFile
     {
         private bool runSucceeded;
-        private Test test;
 
         [TestInitialize]
         public void RunFiles()
         {
-            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.js");
+            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.coffee");
             var sourceFiles = new[] {sourceFile};
-            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.js");
+            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.coffee");
             var testFiles = new[] {testFile};
             var args = new Arguments
                 {
@@ -30,7 +29,7 @@ namespace Tests
             var environment = new LocalEnvironment();
             using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
             {
-                test = new Test(
+                var test = new Test(
                     new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
                                   args.SourceFiles, args.TestFiles),
                     webServer,
@@ -44,12 +43,5 @@ namespace Tests
         {
             runSucceeded.Should().BeTrue();
         }
-
-        [TestMethod]
-        public void NumberOfSuccessesShouldBe1()
-        {
-            test.NumberOfSuccesses.Should().Be(1);
-        }
-
     }
 }

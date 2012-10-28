@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace jasmine_headless_webkit_dotnet
 {
@@ -18,18 +20,25 @@ namespace jasmine_headless_webkit_dotnet
             this.timeOut = timeOut;
         }
 
+        public int NumberOfSuccesses { get; private set; }
+
         public bool Run()
         {
             try
             {
                 var phantomArgs = BuildArgs();
-
+                var output = new StringBuilder();
                 var phantomProcess = new Process
                 {
                     StartInfo = new ProcessStartInfo(phantomFileLocation, phantomArgs)
                         {RedirectStandardOutput = true, UseShellExecute = false, CreateNoWindow = true}
                 };
-                phantomProcess.OutputDataReceived += (sender, args) => { Console.WriteLine(args.Data); };
+                phantomProcess.OutputDataReceived += (sender, args) =>
+                    {
+                        Console.WriteLine(args.Data);
+                        Debug.WriteLine(args.Data);
+                        output.AppendLine(args.Data);
+                    };
                 Debug.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
                 if (verbosityLevel > VerbosityLevel.Verbose)
                 {
@@ -43,16 +52,29 @@ namespace jasmine_headless_webkit_dotnet
                     phantomProcess.Kill();
                     return false;
                 }
-                if (phantomProcess.ExitCode != 0)
-                    return false;
+                var testsPassed = VerifyOutput(output.ToString());
+                return testsPassed && phantomProcess.ExitCode == 0;
             }
             catch (Exception exception)
             {
                 Console.WriteLine("Exception when running phantom:\n{0}", exception);
                 return false;
             }
-            return true;
         }
+
+        private bool VerifyOutput(string output)
+        {
+            //parse, format is "1 spec, 0 failures in 0.004s."
+            var matches = Regex.Matches(output, @"\d+");
+            NumberOfTests = Convert.ToInt32(matches[0].Value);
+            NumberOfFailures = Convert.ToInt32(matches[1].Value);
+            NumberOfSuccesses = NumberOfTests - NumberOfFailures;
+            return !output.Contains("SyntaxError:") && NumberOfFailures == 0;
+        }
+
+        protected int NumberOfTests { get; private set; }
+
+        protected int NumberOfFailures { get; private set; }
 
         public abstract string BuildArgs();
     }

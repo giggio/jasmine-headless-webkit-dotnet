@@ -38,10 +38,13 @@
         {
             return runStragegy.Run();
         }
+
+        public int NumberOfSuccesses { get { return runStragegy.NumberOfSuccesses; } }
     }
 
     public interface IPhantomJS
     {
         bool Run();
+        int NumberOfSuccesses { get; }
     }
 }
