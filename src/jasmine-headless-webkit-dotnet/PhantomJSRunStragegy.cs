@@ -11,6 +11,9 @@ namespace jasmine_headless_webkit_dotnet
         protected readonly string jasmineTestFileLocation;
         private readonly VerbosityLevel verbosityLevel;
         private readonly int timeOut;
+        public int NumberOfTests { get; private set; }
+        public int NumberOfFailures { get; private set; }
+
 
         protected PhantomJSRunStragegy(string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut)
         {
@@ -26,33 +29,10 @@ namespace jasmine_headless_webkit_dotnet
         {
             try
             {
-                var phantomArgs = BuildArgs();
-                var output = new StringBuilder();
-                var phantomProcess = new Process
-                {
-                    StartInfo = new ProcessStartInfo(phantomFileLocation, phantomArgs)
-                        {RedirectStandardOutput = true, UseShellExecute = false, CreateNoWindow = true}
-                };
-                phantomProcess.OutputDataReceived += (sender, args) =>
-                    {
-                        Console.WriteLine(args.Data);
-                        Debug.WriteLine(args.Data);
-                        output.AppendLine(args.Data);
-                    };
-                Debug.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
-                if (verbosityLevel > VerbosityLevel.Verbose)
-                {
-                    Console.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
-                }
-                phantomProcess.Start();
-                phantomProcess.BeginOutputReadLine();
-                var exited = phantomProcess.WaitForExit(timeOut * 1000);
-                if (!exited)
-                {
-                    phantomProcess.Kill();
-                    return false;
-                }
-                var testsPassed = VerifyOutput(output.ToString());
+                var phantomProcess = CreatePhantomProcess();
+                var output = StartProcessAndGetOutput(phantomProcess);
+                if (!WaitProcessToComplete(phantomProcess)) return false;
+                var testsPassed = VerifyTestRunFromOutput(output.ToString());
                 return testsPassed && phantomProcess.ExitCode == 0;
             }
             catch (Exception exception)
@@ -62,7 +42,49 @@ namespace jasmine_headless_webkit_dotnet
             }
         }
 
-        private bool VerifyOutput(string output)
+        private bool WaitProcessToComplete(Process phantomProcess)
+        {
+            var exited = phantomProcess.WaitForExit(timeOut*1000);
+            if (!exited)
+            {
+                phantomProcess.Kill();
+                return false;
+            }
+            return true;
+        }
+
+        private static StringBuilder StartProcessAndGetOutput(Process phantomProcess)
+        {
+            var output = new StringBuilder();
+            phantomProcess.OutputDataReceived += (sender, args) =>
+                {
+                    Console.WriteLine(args.Data);
+                    Debug.WriteLine(args.Data);
+                    output.AppendLine(args.Data);
+                };
+            phantomProcess.Start();
+            phantomProcess.BeginOutputReadLine();
+            return output;
+        }
+
+        private Process CreatePhantomProcess()
+        {
+            var phantomArgs = BuildArgs();
+            var phantomProcess = new Process
+                {
+                    StartInfo = new ProcessStartInfo(phantomFileLocation, phantomArgs)
+                        {RedirectStandardOutput = true, UseShellExecute = false, CreateNoWindow = true}
+                };
+            Debug.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName, phantomProcess.StartInfo.Arguments);
+            if (verbosityLevel > VerbosityLevel.Verbose)
+            {
+                Console.WriteLine("Starting process: {0} {1}", phantomProcess.StartInfo.FileName,
+                                  phantomProcess.StartInfo.Arguments);
+            }
+            return phantomProcess;
+        }
+
+        private bool VerifyTestRunFromOutput(string output)
         {
             //parse, format is "1 spec, 0 failures in 0.004s."
             var match = Regex.Match(output, @"(\d+) spec[s]*, (\d+) failure[s]*");
@@ -71,10 +93,6 @@ namespace jasmine_headless_webkit_dotnet
             NumberOfSuccesses = NumberOfTests - NumberOfFailures;
             return !output.Contains("SyntaxError:") && NumberOfFailures == 0;
         }
-
-        protected int NumberOfTests { get; private set; }
-
-        public int NumberOfFailures { get; private set; }
 
         public abstract string BuildArgs();
     }
