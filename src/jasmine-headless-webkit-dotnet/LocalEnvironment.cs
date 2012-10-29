@@ -47,6 +47,11 @@ namespace jasmine_headless_webkit_dotnet
             var jasmineDir = string.Format("jasmine-{0}.{1}.{2}", major, minor, revision);
             return Path.Combine(GetToolsDir(), jasmineDir);
         }
+
+        public string GetRunDir()
+        {
+            return Environment.CurrentDirectory;
+        }
     }
 
     public interface ILocalEnvironment
@@ -59,5 +64,6 @@ namespace jasmine_headless_webkit_dotnet
         string GetJasmineJasmineCSSFileLocation(int jasmineVersion);
         string GetJasmineJasmineJSFileLocation(int jasmineVersion);
         string GetJasmineDir(int jasmineVersion);
+        string GetRunDir();
     }
 }

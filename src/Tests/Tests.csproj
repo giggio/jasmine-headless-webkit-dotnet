@@ -79,6 +79,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Integrated\Js\OneTestPassesWithRelativeFileLocation.cs" />
     <Compile Include="Unit\BaseTest.cs" />
     <Compile Include="Integrated\Js\OneTestFails.cs" />
     <Compile Include="Integrated\RunTestHelper.cs" />

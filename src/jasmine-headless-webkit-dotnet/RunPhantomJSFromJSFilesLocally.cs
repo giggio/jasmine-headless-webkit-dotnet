@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using jasmine_headless_webkit_dotnet.Properties;
@@ -33,10 +34,30 @@ namespace jasmine_headless_webkit_dotnet
             var htmlTestFileLocation = string.Format("jasmine-headless-webkit-dotnet-{0}.html",
                                                      new Random().Next(0, 1000000));
             fullHtmlTestFileLocation = Path.Combine(environment.GetToolsDir(), htmlTestFileLocation);
-            var sourceFilesFormated = sourceFiles.Aggregate(string.Empty, (current, sourceFile) => current + string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>\n", sourceFile));
-            var testFilesFormated = testFiles.Aggregate(string.Empty, (current, sourceFile) => current + string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>\n", sourceFile));
+            var sourceFilesWithRelativeNames = FixRelativeLocation(sourceFiles);
+            var sourceFilesFormated = sourceFilesWithRelativeNames.Aggregate(string.Empty, (current, sourceFile) => current + string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>\n", sourceFile));
+            var testFilesWithFelativeNames = FixRelativeLocation(testFiles);
+            var testFilesFormated = testFilesWithFelativeNames.Aggregate(string.Empty, (current, sourceFile) => current + string.Format("<script type=\"text/javascript\" src=\"{0}\"></script>\n", sourceFile));
             var htmlTestFileContent = Resources._110_test_html.Replace("<!--source files-->", sourceFilesFormated).Replace("<!--test files-->", testFilesFormated);
             File.WriteAllText(fullHtmlTestFileLocation, htmlTestFileContent);
+        }
+
+        private string[] FixRelativeLocation(string[] files)
+        {
+            var fullFileNames = new List<string>();
+            foreach (var file in files)
+            {
+                var pathIsRelative = file.Length > 0 && Path.GetPathRoot(file).Length == 0;
+                if (pathIsRelative)
+                {
+                    fullFileNames.Add(Path.Combine(environment.GetRunDir(), file));
+                }
+                else
+                {
+                    fullFileNames.Add(file);
+                }
+            }
+            return fullFileNames.ToArray();
         }
     }
 }
