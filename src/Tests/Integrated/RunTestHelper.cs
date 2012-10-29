@@ -1,6 +1,6 @@
 ﻿using jasmine_headless_webkit_dotnet;
 
-namespace Tests
+namespace Tests.Integrated
 {
     public class RunTestHelper
     {

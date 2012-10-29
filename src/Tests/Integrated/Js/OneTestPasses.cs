@@ -4,10 +4,10 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using jasmine_headless_webkit_dotnet;
 
-namespace Tests
+namespace Tests.Integrated.Js
 {
     [TestClass]
-    public class OneTestFailsWithoutServerWithJsFile
+    public class OneTestPasses
     {
         private static bool runSucceeded;
         private static Test test;
@@ -17,28 +17,22 @@ namespace Tests
         {
             var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.js");
             var sourceFiles = new[] {sourceFile};
-            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumFailSpec.js");
+            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.js");
             var testFiles = new[] {testFile};
             test = RunTestHelper.RunTestWithJSFiles(sourceFiles, testFiles);
             runSucceeded = test.Run();
         }
 
         [TestMethod]
-        public void VerifyFailure()
+        public void VerifyPass()
         {
-            runSucceeded.Should().BeFalse();
+            runSucceeded.Should().BeTrue();
         }
 
         [TestMethod]
-        public void NumberOfSuccessesShouldBe0()
+        public void NumberOfSuccessesShouldBe1()
         {
-            test.NumberOfSuccesses.Should().Be(0);
-        }
-
-        [TestMethod]
-        public void NumberOfFailuresShouldBe1()
-        {
-            test.NumberOfFailures.Should().Be(1);
+            test.NumberOfSuccesses.Should().Be(1);
         }
 
     }

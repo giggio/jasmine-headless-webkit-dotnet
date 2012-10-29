@@ -1,7 +1,7 @@
 using AutoMoq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Unit
 {
     public class BaseTest
     {

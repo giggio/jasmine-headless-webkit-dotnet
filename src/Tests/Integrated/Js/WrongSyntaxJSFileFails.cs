@@ -3,7 +3,7 @@ using System.Reflection;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Integrated.Js
 {
     [TestClass]
     public class WrongSyntaxJSFileFails

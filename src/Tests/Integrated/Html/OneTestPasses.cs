@@ -3,10 +3,10 @@ using System.Reflection;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Integrated.Html
 {
     [TestClass]
-    public class OneTestPassesWithoutServerWithHtmlFile
+    public class OneTestPasses
     {
         private static bool runSucceeded;
 

@@ -79,17 +79,17 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="OneTestFailsWithoutServerWithJsFile.cs" />
-    <Compile Include="RunTestHelper.cs" />
-    <Compile Include="WrongSyntaxJSFileFails.cs" />
-    <Compile Include="OneTestPassesWithoutServerWithCoffeeScriptFile.cs" />
-    <Compile Include="OneTestPassesWithoutServerWithJsFile.cs" />
-    <Compile Include="OneTestPassesWithoutServerWithHtmlFile.cs" />
+    <Compile Include="Unit\BaseTest.cs" />
+    <Compile Include="Integrated\Js\OneTestFails.cs" />
+    <Compile Include="Integrated\RunTestHelper.cs" />
+    <Compile Include="Integrated\Js\WrongSyntaxJSFileFails.cs" />
+    <Compile Include="Integrated\Js\OneCoffeeScriptTestPasses.cs" />
+    <Compile Include="Integrated\Js\OneTestPasses.cs" />
+    <Compile Include="Integrated\Html\OneTestPasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BindsToArrayOfStrings.cs" />
-    <Compile Include="ArgumentsTests.cs" />
-    <Compile Include="ProgramTests.cs" />
+    <Compile Include="Unit\BindsToArrayOfStrings.cs" />
+    <Compile Include="Unit\ArgumentsTests.cs" />
+    <Compile Include="Unit\ProgramTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

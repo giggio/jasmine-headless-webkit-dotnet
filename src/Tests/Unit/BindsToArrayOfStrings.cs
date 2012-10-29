@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using jasmine_headless_webkit_dotnet;
 
-namespace Tests
+namespace Tests.Unit
 {
     [TestClass]
     public class BindsToArrayOfStrings
