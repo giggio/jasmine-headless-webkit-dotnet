@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="OneTestFailsWithoutServerWithJsFile.cs" />
+    <Compile Include="RunTestHelper.cs" />
     <Compile Include="WrongSyntaxJSFileFails.cs" />
     <Compile Include="OneTestPassesWithoutServerWithCoffeeScriptFile.cs" />
     <Compile Include="OneTestPassesWithoutServerWithJsFile.cs" />

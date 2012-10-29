@@ -18,7 +18,7 @@ namespace jasmine_headless_webkit_dotnet
             this.port = port;
         }
 
-        public void RunServer()
+        public void Run()
         {
             if (!runServer) return;
             if (!Directory.Exists(directory))
@@ -40,6 +40,6 @@ namespace jasmine_headless_webkit_dotnet
 
     public interface IWebServer : IDisposable
     {
-        void RunServer();
+        void Run();
     }
 }

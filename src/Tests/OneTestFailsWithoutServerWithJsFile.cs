@@ -19,24 +19,8 @@ namespace Tests
             var sourceFiles = new[] {sourceFile};
             var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumFailSpec.js");
             var testFiles = new[] {testFile};
-            var args = new Arguments
-                {
-                    RunServer = false,
-                    VerbosityLevel = VerbosityLevel.Verbose,
-                    Timeout = 10,
-                    SourceFiles = sourceFiles,
-                    TestFiles = testFiles
-                };
-            var environment = new LocalEnvironment();
-            using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
-            {
-                test = new Test(
-                    new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
-                                  args.SourceFiles, args.TestFiles),
-                    webServer,
-                    new Tools(environment));
-                runSucceeded = test.Run();
-            }
+            test = RunTestHelper.RunTestWithJSFiles(sourceFiles, testFiles);
+            runSucceeded = test.Run();
         }
 
         [TestMethod]

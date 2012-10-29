@@ -6,7 +6,7 @@
         private readonly IWebServer webServer;
         private readonly ITools tools;
 
-        public Test(IPhantomJS phantomJS, IWebServer webServer, ITools tools)
+        public Test(IPhantomJS phantomJS, ITools tools, IWebServer webServer = null)
         {
             this.phantomJS = phantomJS;
             this.webServer = webServer;
@@ -26,7 +26,7 @@
         public bool Run()
         {
             tools.Hidrate();
-            webServer.RunServer();
+            if (webServer != null) webServer.Run();
             var testResult = phantomJS.Run();
             return testResult;
         }
