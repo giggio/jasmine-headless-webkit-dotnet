@@ -15,9 +15,9 @@ namespace Tests.Integrated.Js
         [ClassInitialize]
         public static void RunFiles(TestContext testContext)
         {
-            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.coffee");
+            var sourceFile = Path.Combine("JasmineTests", "Scripts", "calculator.coffee");
             var sourceFiles = new[] {sourceFile};
-            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.coffee");
+            var testFile = Path.Combine("JasmineTests", "ScriptTests", "calculatorSumPassSpec.coffee");
             var testFiles = new[] {testFile};
             test = RunTestHelper.RunTestWithJSFiles(sourceFiles, testFiles);
             runSucceeded = test.Run();
