@@ -8,10 +8,10 @@ namespace Tests
     [TestClass]
     public class BindsToArrayOfStrings
     {
-        private IModelBindingDefinition<Arguments> bindingDefinition;
+        private static IModelBindingDefinition<Arguments> bindingDefinition;
 
-        [TestInitialize]
-        public void Binding()
+        [ClassInitialize]
+        public static void Binding(TestContext testContext)
         {
             bindingDefinition = Args.Configuration.Configure<Arguments>()
                 .AsFluent()

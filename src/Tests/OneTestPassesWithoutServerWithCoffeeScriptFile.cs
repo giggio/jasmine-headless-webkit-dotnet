@@ -9,10 +9,10 @@ namespace Tests
     [TestClass, Ignore]
     public class OneTestPassesWithoutServerWithCoffeeScriptFile
     {
-        private bool runSucceeded;
+        private static bool runSucceeded;
 
-        [TestInitialize]
-        public void RunFiles()
+        [ClassInitialize]
+        public static void RunFiles(TestContext testContext)
         {
             var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.coffee");
             var sourceFiles = new[] {sourceFile};

@@ -9,11 +9,11 @@ namespace Tests
     [TestClass]
     public class OneTestPassesWithoutServerWithJsFile
     {
-        private bool runSucceeded;
-        private Test test;
+        private static bool runSucceeded;
+        private static Test test;
 
-        [TestInitialize]
-        public void RunFiles()
+        [ClassInitialize]
+        public static void RunFiles(TestContext testContext)
         {
             var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.js");
             var sourceFiles = new[] {sourceFile};

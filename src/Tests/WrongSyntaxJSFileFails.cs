@@ -9,10 +9,10 @@ namespace Tests
     [TestClass]
     public class WrongSyntaxJSFileFails
     {
-        private bool runSucceeded;
+        private static bool runSucceeded;
 
-        [TestInitialize]
-        public void RunFiles()
+        [ClassInitialize]
+        public static void RunFiles(TestContext testContext)
         {
             var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "WrongSyntax.js");
             var sourceFiles = new[] {sourceFile};

@@ -9,10 +9,10 @@ namespace Tests
     [TestClass]
     public class OneTestPassesWithoutServerWithHtmlFile
     {
-        private bool runSucceeded;
+        private static bool runSucceeded;
 
-        [TestInitialize]
-        public void RunFiles()
+        [ClassInitialize]
+        public static void RunFiles(TestContext testContext)
         {
             var jasmineTestDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests"); 
             var args = new Arguments
