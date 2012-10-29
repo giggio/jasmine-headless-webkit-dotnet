@@ -80,6 +80,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
+    <Compile Include="OneTestFailsWithoutServerWithJsFile.cs" />
     <Compile Include="WrongSyntaxJSFileFails.cs" />
     <Compile Include="OneTestPassesWithoutServerWithCoffeeScriptFile.cs" />
     <Compile Include="OneTestPassesWithoutServerWithJsFile.cs" />
@@ -105,6 +106,9 @@
       <Iced>False</Iced>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="JasmineTests\ScriptTests\calculatorSumFailSpec.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\MIT.LICENSE" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -115,6 +119,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="JasmineTests\OneSpecFail.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="JasmineTests\OneSpecPass1.2.0.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -123,6 +130,10 @@
     </Content>
     <Content Include="JasmineTests\Scripts\Calculator.js">
       <DependentUpon>calculator.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\ScriptTests\calculatorSumFailSpec.js">
+      <DependentUpon>calculatorSumFailSpec.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JasmineTests\ScriptTests\calculatorSumPassSpec.js">

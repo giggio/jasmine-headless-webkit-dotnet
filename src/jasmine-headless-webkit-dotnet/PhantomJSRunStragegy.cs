@@ -65,16 +65,16 @@ namespace jasmine_headless_webkit_dotnet
         private bool VerifyOutput(string output)
         {
             //parse, format is "1 spec, 0 failures in 0.004s."
-            var matches = Regex.Matches(output, @"\d+");
-            NumberOfTests = Convert.ToInt32(matches[0].Value);
-            NumberOfFailures = Convert.ToInt32(matches[1].Value);
+            var match = Regex.Match(output, @"(\d+) spec[s]*, (\d+) failure[s]*");
+            NumberOfTests = Convert.ToInt32(match.Groups[1].Value);
+            NumberOfFailures = Convert.ToInt32(match.Groups[2].Value);
             NumberOfSuccesses = NumberOfTests - NumberOfFailures;
             return !output.Contains("SyntaxError:") && NumberOfFailures == 0;
         }
 
         protected int NumberOfTests { get; private set; }
 
-        protected int NumberOfFailures { get; private set; }
+        public int NumberOfFailures { get; private set; }
 
         public abstract string BuildArgs();
     }

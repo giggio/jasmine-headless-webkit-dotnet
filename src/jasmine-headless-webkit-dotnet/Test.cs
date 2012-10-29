@@ -18,6 +18,11 @@
             get { return phantomJS.NumberOfSuccesses; }
         }
 
+        public int NumberOfFailures
+        {
+            get { return phantomJS.NumberOfFailures; }
+        }
+
         public bool Run()
         {
             tools.Hidrate();
