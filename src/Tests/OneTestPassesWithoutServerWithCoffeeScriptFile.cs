@@ -10,6 +10,7 @@ namespace Tests
     public class OneTestPassesWithoutServerWithCoffeeScriptFile
     {
         private static bool runSucceeded;
+        private static Test test;
 
         [ClassInitialize]
         public static void RunFiles(TestContext testContext)
@@ -29,7 +30,7 @@ namespace Tests
             var environment = new LocalEnvironment();
             using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
             {
-                var test = new Test(
+                test = new Test(
                     new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
                                   args.SourceFiles, args.TestFiles),
                     webServer,
@@ -42,6 +43,16 @@ namespace Tests
         public void VerifyPass()
         {
             runSucceeded.Should().BeTrue();
+        }
+        [TestMethod]
+        public void VerifySuccesses()
+        {
+            test.NumberOfSuccesses.Should().Be(1);
+        }
+        [TestMethod]
+        public void VerifyNoFailures()
+        {
+            test.NumberOfFailures.Should().Be(0);
         }
     }
 }
