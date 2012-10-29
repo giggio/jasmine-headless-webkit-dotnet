@@ -78,6 +78,8 @@
     <Compile Include="RunPhantomJSFromHtmlFileInServer.cs" />
     <Compile Include="RunPhantomJSFromJSFilesLocally.cs" />
     <Compile Include="RunType.cs" />
+    <Compile Include="SourceFile.cs" />
+    <Compile Include="SourceFiles.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="VerbosityLevel.cs" />

@@ -1,12 +1,11 @@
 ﻿using System.IO;
-using System.Reflection;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated.Js
 {
-    [TestClass, Ignore]
+    [TestClass]
     public class OneCoffeeScriptTestPasses
     {
         private static bool runSucceeded;

@@ -91,6 +91,7 @@
     <Compile Include="Unit\BindsToArrayOfStrings.cs" />
     <Compile Include="Unit\ArgumentsTests.cs" />
     <Compile Include="Unit\ProgramTests.cs" />
+    <Compile Include="Unit\SourceFilesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
