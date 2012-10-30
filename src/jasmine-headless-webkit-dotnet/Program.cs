@@ -15,7 +15,7 @@ namespace jasmine_headless_webkit_dotnet
                 .ParsesArgumentsWith(typeof(string[]), new ArrayOfStringConverter())
                 .Initialize()
                 .CreateAndBind(argumentsArray);
-            if (!args.IsConsistent())
+            if (args.RunType == RunType.Help)
             {
                 args.WriteHelp();
                 return 1;

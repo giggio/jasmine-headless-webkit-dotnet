@@ -31,7 +31,7 @@ namespace jasmine_headless_webkit_dotnet
         public string[] TestFiles { get; set; }
         [Description("Javascript source files.")]
         public string[] SourceFiles { get; set; }
-
+        
         public RunType RunType
         {
             get
@@ -48,8 +48,19 @@ namespace jasmine_headless_webkit_dotnet
                 {
                     return RunType.HtmlFile;
                 }
+                if (IsDefaultRun())
+                {
+                    return RunType.Default;
+                }
                 return RunType.Help;
             }
+        }
+
+        private bool IsDefaultRun()
+        {
+            return string.IsNullOrEmpty(Directory) && string.IsNullOrEmpty(FileName) &&
+                   (TestFiles == null || TestFiles.Length == 0) && (SourceFiles == null || SourceFiles.Length == 0) &&
+                   !Help;
         }
 
         private bool IsHtmlRun()
@@ -75,12 +86,6 @@ namespace jasmine_headless_webkit_dotnet
         public int GetTimeOut()
         {
             return Timeout ?? 60;
-        }
-
-
-        public bool IsConsistent()
-        {
-            return RunType != RunType.Help;
         }
 
         public void WriteHelp()

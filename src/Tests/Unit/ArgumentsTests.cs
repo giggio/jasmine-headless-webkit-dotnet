@@ -9,52 +9,46 @@ namespace Tests.Unit
     {
 
         [TestMethod]
-        public void WithHelpShouldNotBeConsistent()
+        public void EmptyShouldBeConsistent()
+        {
+            var args = new Arguments();
+            args.RunType.Should().Be(RunType.Default);
+        }
+        [TestMethod]
+        public void WithHelpTypeShouldBeHelp()
         {
             var args = new Arguments {Help = true};
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithHelpAndOtherConsistentArgsStillShouldNotBeConsistent()
+        public void WithHelpAndOtherConsistentArgsStillTypeShouldBeHelp()
         {
             var args = new Arguments { Help = true, SourceFiles = new string[1], TestFiles = new string[1] };
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithSourceFilesAndTestFilesShouldBeConsistent()
-        {
-            var args = new Arguments {SourceFiles = new string[1], TestFiles = new string[1]};
-            args.IsConsistent().Should().BeTrue();
-        }
-        [TestMethod]
-        public void WithSourceFilesAndWithoutTestFilesShouldNotBeConsistent()
+        public void WithSourceFilesAndWithoutTestFilesTypeShouldBeHelp()
         {
             var args = new Arguments {SourceFiles = new string[1]};
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithoutSourceFilesAndWithTestFilesShouldNotBeConsistent()
+        public void WithoutSourceFilesAndWithTestFilesTypeShouldBeHelp()
         {
             var args = new Arguments {SourceFiles = new string[1]};
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithDirectoryAndFileNameShouldBeConsistent()
-        {
-            var args = new Arguments { Directory = "a", FileName = "b"};
-            args.IsConsistent().Should().BeTrue();
-        }
-        [TestMethod]
-        public void WithoutDirectoryAndFileNameShouldNotBeConsistent()
+        public void WithoutDirectoryAndFileNameTypeShouldBeHelp()
         {
             var args = new Arguments { FileName = "b"};
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithDirectoryAndWithoutFileNameShouldNotBeConsistent()
+        public void WithDirectoryAndWithoutFileNameTypeShouldBeHelp()
         {
             var args = new Arguments { Directory = "b"};
-            args.IsConsistent().Should().BeFalse();
+            args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
         public void WithDirectoryAndFileNameTypeShouldBeHtmlFile()
@@ -68,12 +62,5 @@ namespace Tests.Unit
             var args = new Arguments { SourceFiles = new string[1], TestFiles = new string[1] };
             args.RunType.Should().Be(RunType.JSFiles);
         }
-        [TestMethod]
-        public void WithHelpTypeShouldBeHelp()
-        {
-            var args = new Arguments { Help = true };
-            args.RunType.Should().Be(RunType.Help);
-        }
-
     }
 }
