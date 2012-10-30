@@ -13,6 +13,8 @@ namespace jasmine_headless_webkit_dotnet
         {
             VerbosityLevel = VerbosityLevel.Normal;
         }
+        [Description("This help text.")]
+        public bool Help { get; set; }
         [Description("The directory to run the server from.")]
         public string Directory { get; set; }
         [Description("The port to run the server at.")]
@@ -34,12 +36,35 @@ namespace jasmine_headless_webkit_dotnet
         {
             get
             {
-                if (SourceFiles != null && SourceFiles.Length > 0)
+                if (IsHelpRun())
+                {
+                    return RunType.Help;
+                }
+                if (IsJsRun())
                 {
                     return RunType.JSFiles;
                 }
-                return RunType.HtmlFile;
+                if (IsHtmlRun())
+                {
+                    return RunType.HtmlFile;
+                }
+                return RunType.Help;
             }
+        }
+
+        private bool IsHtmlRun()
+        {
+            return (!string.IsNullOrEmpty(Directory) && !string.IsNullOrEmpty(FileName));
+        }
+
+        private bool IsHelpRun()
+        {
+            return Help;
+        }
+
+        private bool IsJsRun()
+        {
+            return ((TestFiles != null && TestFiles.Length > 0) && (SourceFiles != null && SourceFiles.Length > 0));
         }
 
         public int GetPort()
@@ -55,10 +80,7 @@ namespace jasmine_headless_webkit_dotnet
 
         public bool IsConsistent()
         {
-            if ((string.IsNullOrEmpty(Directory) || string.IsNullOrEmpty(FileName)) && 
-            ((TestFiles == null || TestFiles.Length == 0) || (SourceFiles == null || SourceFiles.Length == 0)))
-                return false;
-            return true;
+            return RunType != RunType.Help;
         }
 
         public void WriteHelp()

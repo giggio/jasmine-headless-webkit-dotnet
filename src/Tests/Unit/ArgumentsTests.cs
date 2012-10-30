@@ -7,6 +7,19 @@ namespace Tests.Unit
     [TestClass]
     public class ArgumentsTests
     {
+
+        [TestMethod]
+        public void WithHelpShouldNotBeConsistent()
+        {
+            var args = new Arguments {Help = true};
+            args.IsConsistent().Should().BeFalse();
+        }
+        [TestMethod]
+        public void WithHelpAndOtherConsistentArgsStillShouldNotBeConsistent()
+        {
+            var args = new Arguments { Help = true, SourceFiles = new string[1], TestFiles = new string[1] };
+            args.IsConsistent().Should().BeFalse();
+        }
         [TestMethod]
         public void WithSourceFilesAndTestFilesShouldBeConsistent()
         {
@@ -54,6 +67,12 @@ namespace Tests.Unit
         {
             var args = new Arguments { SourceFiles = new string[1], TestFiles = new string[1] };
             args.RunType.Should().Be(RunType.JSFiles);
+        }
+        [TestMethod]
+        public void WithHelpTypeShouldBeHelp()
+        {
+            var args = new Arguments { Help = true };
+            args.RunType.Should().Be(RunType.Help);
         }
 
     }
