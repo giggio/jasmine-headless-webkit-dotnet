@@ -1,15 +1,13 @@
-using System.IO;
-
 namespace jasmine_headless_webkit_dotnet
 {
     /// <summary>
     /// Runinng like this: phantomjs.exe run_jasmine_test.coffee c:\testes\testes.html
     /// </summary>
-    public class RunPhantomJSFromHtmlFileLocally : PhantomJS
+    public class PhantomJSFromHtmlFile : PhantomJS
     {
         private readonly string fileName;
 
-        public RunPhantomJSFromHtmlFileLocally(string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string fileName)
+        public PhantomJSFromHtmlFile(string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string fileName)
             : base(phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut)
         {
             this.fileName = fileName;

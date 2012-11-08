@@ -6,14 +6,14 @@ using jasmine_headless_webkit_dotnet.Properties;
 
 namespace jasmine_headless_webkit_dotnet
 {
-    public class RunPhantomJSFromJSFilesLocally : PhantomJS
+    public class PhantomJSFromJSFiles : PhantomJS
     {
         private readonly ILocalEnvironment environment;
         private string[] sourceFiles;
         private string[] testFiles;
         private string fullHtmlTestFileLocation;
 
-        public RunPhantomJSFromJSFilesLocally(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string[] sourceFiles, string[] testFiles)
+        public PhantomJSFromJSFiles(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string[] sourceFiles, string[] testFiles)
             : base(phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut)
         {
             this.environment = environment;

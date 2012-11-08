@@ -67,8 +67,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RunPhantomJSFromHtmlFileLocally.cs" />
-    <Compile Include="RunPhantomJSFromJSFilesLocally.cs" />
+    <Compile Include="PhantomJSFromHtmlFile.cs" />
+    <Compile Include="PhantomJSFromJSFiles.cs" />
     <Compile Include="RunType.cs" />
     <Compile Include="SourceFile.cs" />
     <Compile Include="SourceFiles.cs" />
