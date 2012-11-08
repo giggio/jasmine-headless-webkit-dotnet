@@ -20,29 +20,12 @@ namespace jasmine_headless_webkit_dotnet
                 return 1;
             }
             var environment = new LocalEnvironment();
-            var phantomJS = GetPhantomJS(args, environment);
+            var phantomJS = new PhantomJSFactory(args, environment).Create();
             var program = new Program(
                 new Tools(environment),
                 phantomJS);
             var runSucceeded = program.Run();
             return runSucceeded ? 0 : 1;
-        }
-
-        private static IPhantomJS GetPhantomJS(Arguments args, ILocalEnvironment environment)
-        {
-            IPhantomJS phantomJS;
-            switch (args.RunType)
-            {
-                case RunType.HtmlFile:
-                    phantomJS = new PhantomJSFromHtmlFile(environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.FileName);
-                    break;
-                case RunType.JSFiles:
-                    phantomJS = new PhantomJSFromJSFiles(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            return phantomJS;
         }
 
         public Program(ITools tools, IPhantomJS phantomJS)
