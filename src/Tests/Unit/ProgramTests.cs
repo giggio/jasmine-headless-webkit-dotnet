@@ -10,17 +10,17 @@ namespace Tests.Unit
         [TestMethod]
         public void SimpleRunShouldSucceed()
         {
-            var program = automoqer.Create<Program>();
+            var jasmineRunner = automoqer.Create<JasmineRunner>();
             automoqer.GetMock<IPhantomJS>().Setup(pJS => pJS.Run()).Returns(true);
-            var runSucceeded = program.Run();
+            var runSucceeded = jasmineRunner.Run();
             runSucceeded.Should().BeTrue();
         }
         [TestMethod]
         public void FailedRunShouldFail()
         {
-            var program = automoqer.Create<Program>();
+            var jasmineRunner = automoqer.Create<JasmineRunner>();
             automoqer.GetMock<IPhantomJS>().Setup(pJS => pJS.Run()).Returns(false);
-            var runSucceeded = program.Run();
+            var runSucceeded = jasmineRunner.Run();
             runSucceeded.Should().BeFalse();
         }
 
