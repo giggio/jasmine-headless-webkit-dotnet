@@ -15,18 +15,12 @@ namespace jasmine_headless_webkit_dotnet
         }
         [Description("This help text.")]
         public bool Help { get; set; }
-        [Description("The directory to run the server from.")]
-        public string Directory { get; set; }
-        [Description("The port to run the server at.")]
-        public int? Port { get; set; }
         [Description("The test archive.")]
         public string FileName { get; set; }
         [Description("The time to wait for the tests to complete before stopping.")]
         public int? Timeout { get; set; }
         [Description("The verbosity level. Defaults to normal. Possible values: normal, verbose.")]
         public VerbosityLevel VerbosityLevel { get; set; }
-        [Description("Weather to run the server. Defaults to false.")]
-        public bool RunServer { get; set; }
         [Description("Javascript files to test.")]
         public string[] TestFiles { get; set; }
         [Description("Javascript source files.")]
@@ -58,14 +52,14 @@ namespace jasmine_headless_webkit_dotnet
 
         private bool IsDefaultRun()
         {
-            return string.IsNullOrEmpty(Directory) && string.IsNullOrEmpty(FileName) &&
+            return string.IsNullOrEmpty(FileName) &&
                    (TestFiles == null || TestFiles.Length == 0) && (SourceFiles == null || SourceFiles.Length == 0) &&
                    !Help;
         }
 
         private bool IsHtmlRun()
         {
-            return (!string.IsNullOrEmpty(Directory) && !string.IsNullOrEmpty(FileName));
+            return !string.IsNullOrEmpty(FileName);
         }
 
         private bool IsHelpRun()
@@ -76,11 +70,6 @@ namespace jasmine_headless_webkit_dotnet
         private bool IsJsRun()
         {
             return ((TestFiles != null && TestFiles.Length > 0) && (SourceFiles != null && SourceFiles.Length > 0));
-        }
-
-        public int GetPort()
-        {
-            return Port ?? new Random().Next(5000, 9000);
         }
 
         public int GetTimeOut()

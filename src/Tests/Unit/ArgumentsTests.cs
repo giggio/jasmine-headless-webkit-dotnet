@@ -9,7 +9,7 @@ namespace Tests.Unit
     {
 
         [TestMethod]
-        public void EmptyShouldBeConsistent()
+        public void EmptyShouldBeDefault()
         {
             var args = new Arguments();
             args.RunType.Should().Be(RunType.Default);
@@ -39,21 +39,9 @@ namespace Tests.Unit
             args.RunType.Should().Be(RunType.Help);
         }
         [TestMethod]
-        public void WithoutDirectoryAndFileNameTypeShouldBeHelp()
+        public void WithFileNameTypeShouldBeHtmlFile()
         {
             var args = new Arguments { FileName = "b"};
-            args.RunType.Should().Be(RunType.Help);
-        }
-        [TestMethod]
-        public void WithDirectoryAndWithoutFileNameTypeShouldBeHelp()
-        {
-            var args = new Arguments { Directory = "b"};
-            args.RunType.Should().Be(RunType.Help);
-        }
-        [TestMethod]
-        public void WithDirectoryAndFileNameTypeShouldBeHtmlFile()
-        {
-            var args = new Arguments { Directory = "a", FileName = "b"};
             args.RunType.Should().Be(RunType.HtmlFile);
         }
         [TestMethod]

@@ -37,17 +37,11 @@
     <Reference Include="Args">
       <HintPath>..\packages\Args.1.0.4\lib\Net40\Args.dll</HintPath>
     </Reference>
-    <Reference Include="CassiniDev4-lib">
-      <HintPath>..\packages\CassiniDev.5.0.2-bleeding-17\lib\net40\debug\CassiniDev4-lib.dll</HintPath>
-    </Reference>
     <Reference Include="CoffeeScriptHttpHandler">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\CoffeeScriptHttpHandler.dll</HintPath>
     </Reference>
     <Reference Include="CoffeeSharp">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\CoffeeSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.2.1.1\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Jurassic">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\Jurassic.dll</HintPath>
@@ -75,7 +69,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RunPhantomJSFromHtmlFileLocally.cs" />
-    <Compile Include="RunPhantomJSFromHtmlFileInServer.cs" />
     <Compile Include="RunPhantomJSFromJSFilesLocally.cs" />
     <Compile Include="RunType.cs" />
     <Compile Include="SourceFile.cs" />
@@ -83,7 +76,6 @@
     <Compile Include="Test.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="VerbosityLevel.cs" />
-    <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

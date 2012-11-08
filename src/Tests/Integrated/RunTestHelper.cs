@@ -1,4 +1,5 @@
-﻿using jasmine_headless_webkit_dotnet;
+﻿using System.IO;
+using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated
 {
@@ -8,16 +9,13 @@ namespace Tests.Integrated
         {
             var args = new Arguments
             {
-                RunServer = false,
                 VerbosityLevel = VerbosityLevel.Verbose,
                 Timeout = 10,
-                Directory = jasmineTestDir,
-                FileName = fileName
+                FileName = Path.Combine(jasmineTestDir, fileName)
             };
             var environment = new LocalEnvironment();
             var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
-                                args.Directory, args.FileName),
+                new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.FileName),
                 new Tools(environment));
             return test;
         }
@@ -25,7 +23,6 @@ namespace Tests.Integrated
         {
             var args = new Arguments
             {
-                RunServer = false,
                 VerbosityLevel = VerbosityLevel.Verbose,
                 Timeout = 10,
                 SourceFiles = sourceFiles,
@@ -33,28 +30,8 @@ namespace Tests.Integrated
             };
             var environment = new LocalEnvironment();
             var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(), args.SourceFiles, args.TestFiles),
+                new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles),
                 new Tools(environment));
-            return test;
-        }
-        public static Test RunTestWithJSFilesAndServer(string[] sourceFiles, string[] testFiles)
-        {
-            var args = new Arguments
-            {
-                RunServer = false,
-                VerbosityLevel = VerbosityLevel.Verbose,
-                Timeout = 10,
-                SourceFiles = sourceFiles,
-                TestFiles = testFiles
-            };
-            var environment = new LocalEnvironment();
-            //todo: stop server
-            var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort());
-            var test = new Test(
-                new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(), args.GetPort(),
-                                args.SourceFiles, args.TestFiles),
-                new Tools(environment),
-                webServer);
             return test;
         }
     }

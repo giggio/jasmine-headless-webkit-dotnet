@@ -5,7 +5,6 @@ namespace jasmine_headless_webkit_dotnet
 {
     public class Program
     {
-        private readonly IWebServer webServer;
         private readonly ITools tools;
         private readonly IPhantomJS phantomJS;
 
@@ -22,15 +21,11 @@ namespace jasmine_headless_webkit_dotnet
             }
             var environment = new LocalEnvironment();
             var phantomJS = GetPhantomJS(args, environment);
-            using (var webServer = new WebServer(args.RunServer, args.Directory, args.GetPort()))
-            {
-                var program = new Program(
-                    webServer,
-                    new Tools(environment),
-                    phantomJS);
-                var runSucceeded = program.Run();
-                return runSucceeded ? 0 : 1;
-            }
+            var program = new Program(
+                new Tools(environment),
+                phantomJS);
+            var runSucceeded = program.Run();
+            return runSucceeded ? 0 : 1;
         }
 
         private static IPhantomJS GetPhantomJS(Arguments args, ILocalEnvironment environment)
@@ -39,12 +34,10 @@ namespace jasmine_headless_webkit_dotnet
             switch (args.RunType)
             {
                 case RunType.HtmlFile:
-                    phantomJS = new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(),
-                                              args.GetPort(), args.Directory, args.FileName);
+                    phantomJS = new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.FileName);
                     break;
                 case RunType.JSFiles:
-                    phantomJS = new PhantomJS(environment, args.RunServer, args.VerbosityLevel, args.GetTimeOut(),
-                                              args.GetPort(), args.SourceFiles, args.TestFiles);
+                    phantomJS = new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -52,9 +45,8 @@ namespace jasmine_headless_webkit_dotnet
             return phantomJS;
         }
 
-        public Program(IWebServer webServer, ITools tools, IPhantomJS phantomJS)
+        public Program(ITools tools, IPhantomJS phantomJS)
         {
-            this.webServer = webServer;
             this.tools = tools;
             this.phantomJS = phantomJS;
         }
@@ -63,8 +55,7 @@ namespace jasmine_headless_webkit_dotnet
         {
             var test = new Test(
                 phantomJS,
-                tools,
-                webServer);
+                tools);
             var runSucceeded = test.Run();
             return runSucceeded;
         }

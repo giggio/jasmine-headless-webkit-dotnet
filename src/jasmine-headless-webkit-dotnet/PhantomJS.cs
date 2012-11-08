@@ -13,21 +13,13 @@
             jasmineTestFileLocation = environment.GetRunJasmineTestFileLocation();
             phantomFileLocation = environment.GetPhantomJSExeFileLocation();            
         }
-        public PhantomJS(ILocalEnvironment environment, bool runningInServer, VerbosityLevel verbosityLevel, int timeOut, int port, string directory, string fileName) : 
+        public PhantomJS(ILocalEnvironment environment, VerbosityLevel verbosityLevel, int timeOut, string fileName) : 
             this(environment,verbosityLevel)
         {
-            if (runningInServer)
-            {
-                runStragegy = new RunPhantomJSFromHtmlFileInServer(phantomFileLocation, jasmineTestFileLocation, verbosityLevel,
-                                                           timeOut, port, fileName);
-            }
-            else
-            {
                 runStragegy = new RunPhantomJSFromHtmlFileLocally(phantomFileLocation, jasmineTestFileLocation, verbosityLevel,
-                                                           timeOut, directory, fileName);
-            }
+                                                           timeOut, fileName);
         }
-        public PhantomJS(ILocalEnvironment environment, bool runningInServer, VerbosityLevel verbosityLevel, int timeOut, int port, string[] sourceFiles, string[] testFiles)
+        public PhantomJS(ILocalEnvironment environment, VerbosityLevel verbosityLevel, int timeOut, string[] sourceFiles, string[] testFiles)
             : this(environment, verbosityLevel)
         {
             runStragegy = new RunPhantomJSFromJSFilesLocally(environment, phantomFileLocation, jasmineTestFileLocation, verbosityLevel,

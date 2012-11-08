@@ -3,13 +3,11 @@
     public class Test
     {
         private readonly IPhantomJS phantomJS;
-        private readonly IWebServer webServer;
         private readonly ITools tools;
 
-        public Test(IPhantomJS phantomJS, ITools tools, IWebServer webServer = null)
+        public Test(IPhantomJS phantomJS, ITools tools)
         {
             this.phantomJS = phantomJS;
-            this.webServer = webServer;
             this.tools = tools;
         }
 
@@ -26,7 +24,6 @@
         public bool Run()
         {
             tools.Hidrate();
-            if (webServer != null) webServer.Run();
             var testResult = phantomJS.Run();
             return testResult;
         }

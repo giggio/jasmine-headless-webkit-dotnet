@@ -7,20 +7,17 @@ namespace jasmine_headless_webkit_dotnet
     /// </summary>
     public class RunPhantomJSFromHtmlFileLocally : PhantomJSRunStragegy
     {
-        private readonly string directory;
         private readonly string fileName;
 
-        public RunPhantomJSFromHtmlFileLocally(string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string directory, string fileName)
+        public RunPhantomJSFromHtmlFileLocally(string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string fileName)
             : base(phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut)
         {
-            this.directory = directory;
             this.fileName = fileName;
         }
 
         public override string BuildArgs()
         {
-            var fullFileName = Path.Combine(directory, fileName).Replace('\\', '/');
-            var phantomArgs = string.Format("{0} file:///{1}", jasmineTestFileLocation, fullFileName);
+            var phantomArgs = string.Format("{0} file:///{1}", jasmineTestFileLocation, fileName.Replace('\\', '/'));
             return phantomArgs;
         }
     }
