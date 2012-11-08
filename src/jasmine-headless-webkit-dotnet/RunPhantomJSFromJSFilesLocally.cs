@@ -6,7 +6,7 @@ using jasmine_headless_webkit_dotnet.Properties;
 
 namespace jasmine_headless_webkit_dotnet
 {
-    public class RunPhantomJSFromJSFilesLocally : PhantomJSRunStragegy
+    public class RunPhantomJSFromJSFilesLocally : PhantomJS
     {
         private readonly ILocalEnvironment environment;
         private string[] sourceFiles;
@@ -21,7 +21,7 @@ namespace jasmine_headless_webkit_dotnet
             this.testFiles = testFiles;
         }
 
-        public override string BuildArgs()
+        protected override string BuildArgs()
         {
             FixRelativeLocations();
             CreateJSFromCoffeeFiles();

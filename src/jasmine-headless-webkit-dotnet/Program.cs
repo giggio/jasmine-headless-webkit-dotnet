@@ -34,10 +34,10 @@ namespace jasmine_headless_webkit_dotnet
             switch (args.RunType)
             {
                 case RunType.HtmlFile:
-                    phantomJS = new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.FileName);
+                    phantomJS = new RunPhantomJSFromHtmlFileLocally(environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.FileName);
                     break;
                 case RunType.JSFiles:
-                    phantomJS = new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles);
+                    phantomJS = new RunPhantomJSFromJSFilesLocally(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -5,7 +5,7 @@ namespace jasmine_headless_webkit_dotnet
     /// <summary>
     /// Runinng like this: phantomjs.exe run_jasmine_test.coffee c:\testes\testes.html
     /// </summary>
-    public class RunPhantomJSFromHtmlFileLocally : PhantomJSRunStragegy
+    public class RunPhantomJSFromHtmlFileLocally : PhantomJS
     {
         private readonly string fileName;
 
@@ -15,7 +15,7 @@ namespace jasmine_headless_webkit_dotnet
             this.fileName = fileName;
         }
 
-        public override string BuildArgs()
+        protected override string BuildArgs()
         {
             var phantomArgs = string.Format("{0} file:///{1}", jasmineTestFileLocation, fileName.Replace('\\', '/'));
             return phantomArgs;

@@ -15,7 +15,7 @@ namespace Tests.Integrated
             };
             var environment = new LocalEnvironment();
             var test = new Test(
-                new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.FileName),
+                new RunPhantomJSFromHtmlFileLocally(environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.FileName),
                 new Tools(environment));
             return test;
         }
@@ -30,7 +30,7 @@ namespace Tests.Integrated
             };
             var environment = new LocalEnvironment();
             var test = new Test(
-                new PhantomJS(environment, args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles),
+                new RunPhantomJSFromJSFilesLocally(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles),
                 new Tools(environment));
             return test;
         }
