@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
-using ServiceStack.Text;
 using System.Linq;
 
 namespace jasmine_headless_webkit_dotnet
