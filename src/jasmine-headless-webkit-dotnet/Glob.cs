@@ -33,7 +33,7 @@ namespace jasmine_headless_webkit_dotnet
             builder.Append(']');
         }
 
-        internal static string PatternToRegex(string pattern, bool pathName, bool noEscape)
+        private static string PatternToRegex(string pattern, bool pathName, bool noEscape)
         {
             var result = new StringBuilder(pattern.Length);
             result.Append("\\G");

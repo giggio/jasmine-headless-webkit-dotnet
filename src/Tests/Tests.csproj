@@ -79,6 +79,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Integrated\Default\OneTestPasses.cs" />
     <Compile Include="Integrated\Js\OneTestPassesWithRelativeFileLocation.cs" />
     <Compile Include="Unit\BaseTest.cs" />
     <Compile Include="Integrated\Js\OneTestFails.cs" />
@@ -95,6 +96,9 @@
     <Compile Include="Unit\GlobTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="JasmineTests\ScriptTests\Support\Jasmine.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="app.config" />
     <Content Include="GlobTestFiles\dirA\OtherFile1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -129,7 +133,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\MIT.LICENSE" />
-    <None Include="JasmineTests\ScriptTests\Support\Jasmine.coffee" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -175,12 +178,6 @@
       <DependentUpon>calculatorSumPassSpec.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\Support\Jasmine.js">
-      <DependentUpon>Jasmine.coffee</DependentUpon>
-    </Content>
-    <Content Include="JasmineTests\ScriptTests\Support\Jasmine.min.js">
-      <DependentUpon>Jasmine.coffee</DependentUpon>
-    </Content>
     <None Include="JasmineTests\ScriptTests\WrongSyntax2.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -212,9 +209,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integrated\Default\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

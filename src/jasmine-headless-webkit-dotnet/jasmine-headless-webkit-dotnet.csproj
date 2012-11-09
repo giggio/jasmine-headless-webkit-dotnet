@@ -46,6 +46,9 @@
     <Reference Include="Jurassic">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\Jurassic.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -62,6 +65,7 @@
     <Compile Include="JasmineRunner.cs" />
     <Compile Include="LocalEnvironment.cs" />
     <Compile Include="PhantomJS.cs" />
+    <Compile Include="PhantomJSDefault.cs" />
     <Compile Include="PhantomJSFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

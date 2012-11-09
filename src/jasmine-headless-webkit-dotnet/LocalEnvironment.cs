@@ -5,41 +5,41 @@ namespace jasmine_headless_webkit_dotnet
 {
     public class LocalEnvironment : ILocalEnvironment
     {
-        public string GetPhantomJSExeFileLocation()
+        public virtual string GetPhantomJSExeFileLocation()
         {
             return Path.Combine(GetToolsDir(), "phantomjs.exe");
         }
 
-        public string GetRunJasmineTestFileLocation()
+        public virtual string GetRunJasmineTestFileLocation()
         {
             return Path.Combine(GetToolsDir(), "run_jasmine_test.coffee");
         }
-        public string GetToolsDir()
+        public virtual string GetToolsDir()
         {
             return Path.Combine(Environment.CurrentDirectory, ".jasmine-headless-webkit-dotnet");
         }
 
-        public string GetJasmineConsoleRunnerJSFileLocation(int jasmineVersion)
+        public virtual string GetJasmineConsoleRunnerJSFileLocation(int jasmineVersion)
         {
             return Path.Combine(GetJasmineDir(jasmineVersion), "console-runner.js");
         }
 
-        public string GetJasmineJasmineHtmlJSFileLocation(int jasmineVersion)
+        public virtual string GetJasmineJasmineHtmlJSFileLocation(int jasmineVersion)
         {
             return Path.Combine(GetJasmineDir(jasmineVersion), "jasmine-html.js");
         }
 
-        public string GetJasmineJasmineCSSFileLocation(int jasmineVersion)
+        public virtual string GetJasmineJasmineCSSFileLocation(int jasmineVersion)
         {
             return Path.Combine(GetJasmineDir(jasmineVersion), "jasmine.css");
         }
 
-        public string GetJasmineJasmineJSFileLocation(int jasmineVersion)
+        public virtual string GetJasmineJasmineJSFileLocation(int jasmineVersion)
         {
             return Path.Combine(GetJasmineDir(jasmineVersion), "jasmine.js");
         }
 
-        public string GetJasmineDir(int jasmineVersion)
+        public virtual string GetJasmineDir(int jasmineVersion)
         {
             var major = Math.Abs(jasmineVersion/100);
             var minor = Math.Abs((jasmineVersion - (major*100))/10);
@@ -48,7 +48,7 @@ namespace jasmine_headless_webkit_dotnet
             return Path.Combine(GetToolsDir(), jasmineDir);
         }
 
-        public string GetRunDir()
+        public virtual string GetRunDir()
         {
             return Environment.CurrentDirectory;
         }

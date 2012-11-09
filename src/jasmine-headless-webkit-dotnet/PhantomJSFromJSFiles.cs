@@ -8,9 +8,9 @@ namespace jasmine_headless_webkit_dotnet
 {
     public class PhantomJSFromJSFiles : PhantomJS
     {
-        private readonly ILocalEnvironment environment;
-        private string[] sourceFiles;
-        private string[] testFiles;
+        protected readonly ILocalEnvironment environment;
+        protected string[] sourceFiles;
+        protected string[] testFiles;
         private string fullHtmlTestFileLocation;
 
         public PhantomJSFromJSFiles(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string[] sourceFiles, string[] testFiles)

@@ -34,5 +34,22 @@ namespace Tests.Integrated
                 new Tools(environment));
             return test;
         }
+
+        public static Test RunTestWithDefault(string jasmineTestDir)
+        {
+            var args = new Arguments
+            {
+                VerbosityLevel = VerbosityLevel.Verbose,
+                Timeout = 10,
+            };
+            //var environment = new LocalEnvironment();
+            var environmentMock = new Moq.Mock<LocalEnvironment> {CallBase = true};
+            environmentMock.Setup(e => e.GetRunDir()).Returns(jasmineTestDir);
+            var environment = environmentMock.Object;
+            var test = new Test(
+                new PhantomJSDefault(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut()),
+                new Tools(environment));
+            return test;
+        }
     }
 }
