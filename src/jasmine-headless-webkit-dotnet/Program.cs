@@ -1,5 +1,4 @@
-﻿using System;
-using Args;
+﻿using Args;
 
 namespace jasmine_headless_webkit_dotnet
 {
@@ -7,10 +6,7 @@ namespace jasmine_headless_webkit_dotnet
     {
         static int Main(string[] argumentsArray)
         {
-            var args = Args.Configuration.Configure<Arguments>().AsFluent()
-                .ParsesArgumentsWith(typeof(string[]), new ArrayOfStringConverter())
-                .Initialize()
-                .CreateAndBind(argumentsArray);
+            var args = GetArguments(argumentsArray);
             if (args.RunType == RunType.Help)
             {
                 args.WriteHelp();
@@ -21,6 +17,15 @@ namespace jasmine_headless_webkit_dotnet
             var program = new JasmineRunner(new Tools(environment), phantomJS);
             var runSucceeded = program.Run();
             return runSucceeded ? 0 : 1;
+        }
+
+        private static Arguments GetArguments(string[] argumentsArray)
+        {
+            var args = Args.Configuration.Configure<Arguments>().AsFluent()
+                .ParsesArgumentsWith(typeof (string[]), new ArrayOfStringConverter())
+                .Initialize()
+                .CreateAndBind(argumentsArray);
+            return args;
         }
     }
 }
