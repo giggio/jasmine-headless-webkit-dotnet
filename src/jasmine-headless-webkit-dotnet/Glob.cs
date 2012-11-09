@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Original file on IronRuby Project, licensed under Apache 2: https://github.com/IronLanguages/main/blob/master/Languages/Ruby/Ruby/Builtins/Glob.cs
+ */
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
