@@ -5,6 +5,11 @@ namespace jasmine_headless_webkit_dotnet
 {
     public class LocalEnvironment : ILocalEnvironment
     {
+        public virtual string GetJasmineConfigurationFileLocation()
+        {
+            return Path.Combine(GetRunDir(), "ScriptTests", "Support", "Jasmine.js");
+        }
+        
         public virtual string GetPhantomJSExeFileLocation()
         {
             return Path.Combine(GetToolsDir(), "phantomjs.exe");
@@ -65,5 +70,6 @@ namespace jasmine_headless_webkit_dotnet
         string GetJasmineJasmineJSFileLocation(int jasmineVersion);
         string GetJasmineDir(int jasmineVersion);
         string GetRunDir();
+        string GetJasmineConfigurationFileLocation();
     }
 }

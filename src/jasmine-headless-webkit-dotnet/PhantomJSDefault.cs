@@ -12,9 +12,7 @@ namespace jasmine_headless_webkit_dotnet
         protected override string BuildArgs()
         {
             var runDir = environment.GetRunDir();
-            var configPath = Path.Combine(runDir, "ScriptTests", "Support", "Jasmine.js");
-            var configText = File.ReadAllText(configPath);
-            //var config = configText.FromJson<JasmineConfig>();
+            var configText = File.ReadAllText(environment.GetJasmineConfigurationFileLocation());
             var config = JsonConvert.DeserializeObject<JasmineConfig>(configText);
             sourceFiles = config.src_files.SelectMany(f => Glob.GetMatches(CanonicalizePath(Path.Combine(runDir, config.src_dir, f)))).ToArray();
             testFiles = config.spec_files.SelectMany(f => Glob.GetMatches(CanonicalizePath(Path.Combine(runDir, config.spec_dir, f)))).ToArray();
