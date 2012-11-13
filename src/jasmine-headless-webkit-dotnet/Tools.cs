@@ -15,7 +15,6 @@ namespace jasmine_headless_webkit_dotnet
         {
             var toolsDirectoryInfo = new DirectoryInfo(environment.GetToolsDir());
             if (!toolsDirectoryInfo.Exists) toolsDirectoryInfo.Create();
-            toolsDirectoryInfo.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 
             var jasmineDirectoryInfo = new DirectoryInfo(environment.GetJasmineDir(110));
             if (!jasmineDirectoryInfo.Exists) jasmineDirectoryInfo.Create();

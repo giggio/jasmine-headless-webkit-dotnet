@@ -19,9 +19,22 @@ namespace jasmine_headless_webkit_dotnet
         {
             return Path.Combine(GetToolsDir(), "run_jasmine_test.coffee");
         }
+
+        public bool IsRunningOnWindows
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(Environment.GetFolderPath(Environment.SpecialFolder.Windows));
+            }
+        }
+
         public virtual string GetToolsDir()
         {
-            return Path.Combine(Environment.CurrentDirectory, ".jasmine-headless-webkit-dotnet");
+            if (IsRunningOnWindows)
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Jasmine-headless-webkit-dotnet");
+            }
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".jasmine-headless-webkit-dotnet");
         }
 
         public virtual string GetJasmineConsoleRunnerJSFileLocation(int jasmineVersion)
@@ -71,5 +84,6 @@ namespace jasmine_headless_webkit_dotnet
         string GetJasmineDir(int jasmineVersion);
         string GetRunDir();
         string GetJasmineConfigurationFileLocation();
+        bool IsRunningOnWindows { get; }
     }
 }
