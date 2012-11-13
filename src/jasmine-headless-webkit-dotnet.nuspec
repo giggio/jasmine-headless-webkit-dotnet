@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>jasmine-headless-webkit-dotnet</id>
+        <version>0.0.1.0-alpha1</version>
+        <title>Jasmine Headless Webkit .NET</title>
+        <authors>Giovanni Bassi</authors>
+        <owners>Giovanni Bassi</owners>
+        <projectUrl>https://github.com/giggio/jasmine-headless-webkit-dotnet/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A Jasmine runner based on PhantomJS and therefore webkit.</description>
+        <releaseNotes>Documentation is to be developed. Right now, read the tests on the project.</releaseNotes>
+        <tags>jasmine headless webkit phantomjs dotnet test javascript coffeescript</tags>
+    </metadata>
+    <files>
+        <file src="package\jasmine-headless-webkit-dotnet.exe" target="tools\jasmine-headless-webkit-dotnet.exe" />
+    </files>
+</package>
