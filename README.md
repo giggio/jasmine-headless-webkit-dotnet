@@ -35,6 +35,12 @@ This is the help output:
 	[/TestFiles|/Te]         Javascript files to test.
 	[/SourceFiles|/S]        Javascript source files.
 
+## Install via Nuget:
+
+    Install-Package jasmine-headless-webkit-dotnet -Pre
+
+The package can be found here: [http://nuget.org/packages/jasmine-headless-webkit-dotnet](http://nuget.org/packages/jasmine-headless-webkit-dotnet)
+
 ## Support
 
 * View the project backlog at Github: [https://github.com/giggio/jasmine-headless-webkit-dotnet/issues](https://github.com/giggio/jasmine-headless-webkit-dotnet/issues)
