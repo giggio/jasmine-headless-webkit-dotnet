@@ -10,7 +10,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A Jasmine runner based on PhantomJS and therefore webkit.</description>
         <releaseNotes>Documentation is to be developed. Right now, read the tests on the project.</releaseNotes>
-        <tags>jasmine headless webkit phantomjs dotnet test javascript coffeescript</tags>
+        <tags>jasmine headless webkit phantomjs phantom dotnet test javascript coffeescript bdd tdd web tests</tags>
     </metadata>
     <files>
         <file src="package\jasmine-headless-webkit-dotnet.exe" target="tools\jasmine-headless-webkit-dotnet.exe" />
