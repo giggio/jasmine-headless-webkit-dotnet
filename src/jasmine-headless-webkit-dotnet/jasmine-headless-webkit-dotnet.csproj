@@ -62,6 +62,7 @@
     <Compile Include="Arguments.cs" />
     <Compile Include="ArrayOfStringConverter.cs" />
     <Compile Include="Glob.cs" />
+    <Compile Include="JasmineConfigurationFileDoesNotExistException.cs" />
     <Compile Include="JasmineRunner.cs" />
     <Compile Include="LocalEnvironment.cs" />
     <Compile Include="PhantomJS.cs" />

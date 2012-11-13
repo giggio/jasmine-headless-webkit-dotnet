@@ -42,7 +42,6 @@ namespace Tests.Integrated
                 VerbosityLevel = VerbosityLevel.Verbose,
                 Timeout = 10,
             };
-            //var environment = new LocalEnvironment();
             var environmentMock = new Moq.Mock<LocalEnvironment> {CallBase = true};
             environmentMock.Setup(e => e.GetRunDir()).Returns(jasmineTestDir);
             var environment = environmentMock.Object;

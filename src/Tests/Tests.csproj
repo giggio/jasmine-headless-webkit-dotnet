@@ -79,6 +79,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Integrated\Default\ConfigFileDoesNotExist.cs" />
     <Compile Include="Integrated\Default\OneTestPasses.cs" />
     <Compile Include="Integrated\Js\OneTestPassesWithRelativeFileLocation.cs" />
     <Compile Include="Unit\BaseTest.cs" />

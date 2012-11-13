@@ -7,7 +7,14 @@ namespace jasmine_headless_webkit_dotnet
     public class PhantomJSDefault : PhantomJSFromJSFiles
     {
         public PhantomJSDefault(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut)
-            : base(environment, phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut, null, null) { }
+            : base(environment, phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut, null, null)
+        {
+            var jasmineConfigurationFileLocation = environment.GetJasmineConfigurationFileLocation();
+            if (!File.Exists(jasmineConfigurationFileLocation))
+            {
+                throw new JasmineConfigurationFileDoesNotExistException();
+            }
+        }
 
         protected override string BuildArgs()
         {
