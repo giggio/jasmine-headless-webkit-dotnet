@@ -1,4 +1,5 @@
 @echo off
+call "%~dp0build.cmd"
 echo Creating one executable for jasmine-headless-webkit-dotnet.exe
 set buildconfig=release
 set bindir=%~dp0jasmine-headless-webkit-dotnet\bin\%buildconfig%\
