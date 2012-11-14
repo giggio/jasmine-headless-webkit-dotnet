@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>jasmine-headless-webkit-dotnet</id>
-        <version>0.0.1.0-alpha1</version>
+        <version>0.0.1-alpha1</version>
         <title>Jasmine Headless Webkit .NET</title>
         <authors>Giovanni Bassi</authors>
         <owners>Giovanni Bassi</owners>
