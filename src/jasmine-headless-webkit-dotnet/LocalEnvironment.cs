@@ -9,7 +9,25 @@ namespace jasmine_headless_webkit_dotnet
         {
             return Path.Combine(GetRunDir(), "ScriptTests", "Support", "Jasmine.js");
         }
-        
+
+        public string GetJasmineConfigurationFileLocation(string configFile)
+        {
+            if (IsRelativePath(configFile))
+            {
+                return Path.Combine(GetRunDir(), configFile);                
+            }
+            return configFile;
+        }
+
+        private bool IsRelativePath(string file)
+        {
+            if (IsRunningOnWindows)
+            {
+                return file.Contains(Path.VolumeSeparatorChar.ToString());                
+            }
+            return file.StartsWith(Path.DirectorySeparatorChar.ToString());
+        }
+
         public virtual string GetPhantomJSExeFileLocation()
         {
             return Path.Combine(GetToolsDir(), "phantomjs.exe");
@@ -85,5 +103,6 @@ namespace jasmine_headless_webkit_dotnet
         string GetRunDir();
         string GetJasmineConfigurationFileLocation();
         bool IsRunningOnWindows { get; }
+        string GetJasmineConfigurationFileLocation(string configFile);
     }
 }

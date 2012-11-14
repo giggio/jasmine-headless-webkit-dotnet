@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using jasmine_headless_webkit_dotnet.Properties;
@@ -64,6 +65,60 @@ namespace jasmine_headless_webkit_dotnet
                 fullFileNames.Add(pathIsRelative ? Path.Combine(environment.GetRunDir(), file) : file);
             }
             return fullFileNames.ToArray();
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            DeleteTempFiles();
+        }
+
+        private void DeleteTempFiles()
+        {
+            DeleteTempHtmlFile();
+            DeleteTempJsFiles();
+        }
+
+        private void DeleteTempJsFiles()
+        {
+            var files = from f in sourceFiles.Union(testFiles)
+                        where string.Compare(Path.GetDirectoryName(f), environment.GetToolsDir(), ignoreCase:true) == 0
+                        select f;
+            foreach (var file in files)
+            {
+                if (!File.Exists(file)) continue;
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception exception)
+                {
+                    Debug.WriteLine("Error deleting temp js file: \n{0}", exception);
+                    if (verbosityLevel > VerbosityLevel.Normal)
+                    {
+                        Console.WriteLine("Error deleting temp js file: \n{0}", exception);
+                    }
+                }
+            }
+        }
+
+        private void DeleteTempHtmlFile()
+        {
+            if (File.Exists(fullHtmlTestFileLocation))
+            {
+                try
+                {
+                    File.Delete(fullHtmlTestFileLocation);
+                }
+                catch (Exception exception)
+                {
+                    Debug.WriteLine("Error deleting temp html file: \n{0}", exception);
+                    if (verbosityLevel > VerbosityLevel.Normal)
+                    {
+                        Console.WriteLine("Error deleting temp html file: \n{0}", exception);
+                    }
+                }
+            }
         }
     }
 }

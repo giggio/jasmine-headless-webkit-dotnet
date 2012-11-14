@@ -25,6 +25,8 @@ namespace jasmine_headless_webkit_dotnet
         public string[] TestFiles { get; set; }
         [Description("Javascript source files.")]
         public string[] SourceFiles { get; set; }
+        [Description("Configuration file.")]
+        public string ConfigFile { get; set; }
         
         public RunType RunType
         {

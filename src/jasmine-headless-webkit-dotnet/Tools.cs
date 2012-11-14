@@ -5,6 +5,7 @@ namespace jasmine_headless_webkit_dotnet
     public class Tools : ITools
     {
         private readonly ILocalEnvironment environment;
+        public ILocalEnvironment Environment { get { return environment; } }
 
         public Tools(ILocalEnvironment environment)
         {
@@ -32,5 +33,6 @@ namespace jasmine_headless_webkit_dotnet
     public interface ITools
     {
         void Hidrate();
+        ILocalEnvironment Environment { get; }
     }
 }

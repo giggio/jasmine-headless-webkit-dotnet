@@ -22,7 +22,7 @@ namespace Tests.Integrated.Default
                 new PhantomJSDefault(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), VerbosityLevel.Verbose, 10);
                 Assert.Fail("Should had failed as file does not exist");
             }
-            catch (JasmineConfigurationFileDoesNotExistException exception)
+            catch (JasmineConfigurationFileDoesNotExistException)
             {
             }
         }

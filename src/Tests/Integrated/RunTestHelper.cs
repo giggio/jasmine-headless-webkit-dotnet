@@ -50,5 +50,20 @@ namespace Tests.Integrated
                 new Tools(environment));
             return test;
         }
+
+        public static Test RunTestWithConfig(string configFile)
+        {
+            var args = new Arguments
+            {
+                VerbosityLevel = VerbosityLevel.Verbose,
+                Timeout = 10,
+                ConfigFile = configFile
+            };
+            var environment = new LocalEnvironment();
+            var test = new Test(
+                new PhantomJSFromConfigFile(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.ConfigFile),
+                new Tools(environment));
+            return test;
+        }
     }
 }

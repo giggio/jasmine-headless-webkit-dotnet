@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="ArrayOfStringConverter.cs" />
+    <Compile Include="JasmineConfig.cs" />
+    <Compile Include="PhantomJSFromConfigFile.cs" />
     <Compile Include="Glob.cs" />
     <Compile Include="JasmineConfigurationFileDoesNotExistException.cs" />
     <Compile Include="JasmineRunner.cs" />

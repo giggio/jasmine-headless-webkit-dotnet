@@ -9,7 +9,7 @@ namespace jasmine_headless_webkit_dotnet
     {
         private readonly string phantomFileLocation;
         protected readonly string jasmineTestFileLocation;
-        private readonly VerbosityLevel verbosityLevel;
+        protected readonly VerbosityLevel verbosityLevel;
         private readonly int timeOut;
         public int NumberOfTests { get; private set; }
         public int NumberOfFailures { get; private set; }
@@ -94,9 +94,12 @@ namespace jasmine_headless_webkit_dotnet
 
         protected abstract string BuildArgs();
 
+        public virtual void Dispose()
+        {
+        }
     }
 
-    public interface IPhantomJS
+    public interface IPhantomJS : IDisposable
     {
         bool Run();
         int NumberOfSuccesses { get; }

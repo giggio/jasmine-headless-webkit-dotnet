@@ -4,13 +4,15 @@ using System.Linq;
 
 namespace jasmine_headless_webkit_dotnet
 {
-    public class PhantomJSDefault : PhantomJSFromJSFiles
+    public class PhantomJSFromConfigFile : PhantomJSFromJSFiles
     {
-        public PhantomJSDefault(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut)
+        private readonly string configFile;
+
+        public PhantomJSFromConfigFile(ILocalEnvironment environment, string phantomFileLocation, string jasmineTestFileLocation, VerbosityLevel verbosityLevel, int timeOut, string configFile)
             : base(environment, phantomFileLocation, jasmineTestFileLocation, verbosityLevel, timeOut, null, null)
         {
-            var jasmineConfigurationFileLocation = environment.GetJasmineConfigurationFileLocation();
-            if (!File.Exists(jasmineConfigurationFileLocation))
+            this.configFile = environment.GetJasmineConfigurationFileLocation(configFile); ;
+            if (!File.Exists(this.configFile))
             {
                 throw new JasmineConfigurationFileDoesNotExistException();
             }
@@ -18,8 +20,8 @@ namespace jasmine_headless_webkit_dotnet
 
         protected override string BuildArgs()
         {
-            var runDir = environment.GetRunDir();
-            var configText = File.ReadAllText(environment.GetJasmineConfigurationFileLocation());
+            var runDir = Path.GetDirectoryName(configFile);
+            var configText = File.ReadAllText(configFile);
             var config = JsonConvert.DeserializeObject<JasmineConfig>(configText);
             sourceFiles = config.src_files.SelectMany(f => Glob.GetMatches(CanonicalizePath(Path.Combine(runDir, config.src_dir, f)))).ToArray();
             testFiles = config.spec_files.SelectMany(f => Glob.GetMatches(CanonicalizePath(Path.Combine(runDir, config.spec_dir, f)))).ToArray();
@@ -30,6 +32,5 @@ namespace jasmine_headless_webkit_dotnet
         {
             return path.Replace('\\', '/');
         }
-        
     }
 }

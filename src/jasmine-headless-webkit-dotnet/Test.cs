@@ -3,7 +3,9 @@
     public class Test
     {
         private readonly IPhantomJS phantomJS;
+        public IPhantomJS PhantomJS { get { return phantomJS; } }
         private readonly ITools tools;
+        public ITools Tools { get { return tools; } }
 
         public Test(IPhantomJS phantomJS, ITools tools)
         {
