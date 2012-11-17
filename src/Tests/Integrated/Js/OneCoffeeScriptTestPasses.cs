@@ -14,9 +14,9 @@ namespace Tests.Integrated.Js
         [TestFixtureSetUp]
         public static void RunFiles()
         {
-            var sourceFile = Path.Combine("JasmineTests", "Scripts", "calculator.coffee");
+            var sourceFile = Path.Combine("JasmineTests", "WithHtml", "Scripts", "calculator.coffee");
             var sourceFiles = new[] {sourceFile};
-            var testFile = Path.Combine("JasmineTests", "ScriptTests", "calculatorSumPassSpec.coffee");
+            var testFile = Path.Combine("JasmineTests", "WithHtml", "ScriptTests", "calculatorSumPassSpec.coffee");
             var testFiles = new[] {testFile};
             test = RunTestHelper.RunTestWithJSFiles(sourceFiles, testFiles);
             runSucceeded = test.Run();

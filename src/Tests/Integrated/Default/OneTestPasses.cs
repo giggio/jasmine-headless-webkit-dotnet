@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
@@ -16,7 +13,7 @@ namespace Tests.Integrated.Default
         [TestFixtureSetUp]
         public static void RunFiles()
         {
-            test = RunTestHelper.RunTestWithDefault(RunTestHelper.GetJasmineTestDirLocation());
+            test = RunTestHelper.RunTestWithDefault(RunTestHelper.GetJasmineTestDirLocation("WithHtml"));
             runSucceeded = test.Run();
         }
 

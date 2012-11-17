@@ -101,7 +101,7 @@
     <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine_favicon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\Support\Jasmine.js">
+    <Content Include="JasmineTests\WithHtml\ScriptTests\Support\Jasmine.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JasmineTests\WithConfig\config.js">
@@ -155,21 +155,21 @@
     <None Include="GlobTestFiles\dirB\File2.log">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="JasmineTests\Scripts\calculator.coffee">
+    <None Include="JasmineTests\WithHtml\Scripts\calculator.coffee">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <Bare>False</Bare>
       <Iced>False</Iced>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="JasmineTests\ScriptTests\calculatorSumPassSpec.coffee">
+    <None Include="JasmineTests\WithHtml\ScriptTests\calculatorSumPassSpec.coffee">
       <Compile>True</Compile>
       <Minify>True</Minify>
       <Bare>False</Bare>
       <Iced>False</Iced>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="JasmineTests\ScriptTests\calculatorSumFailSpec.coffee">
+    <None Include="JasmineTests\WithHtml\ScriptTests\calculatorSumFailSpec.coffee">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="JasmineTests\testlibs\jasmine-1.2.0\MIT.LICENSE" />
@@ -212,28 +212,28 @@
     <Content Include="GlobTestFiles\dirB\File2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\OneSpecFail.html">
+    <Content Include="JasmineTests\WithHtml\OneSpecFail.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\OneSpecPass1.2.0.html">
+    <Content Include="JasmineTests\WithHtml\OneSpecPass1.2.0.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\OneSpecPass1.1.0.html">
+    <Content Include="JasmineTests\WithHtml\OneSpecPass1.1.0.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\Scripts\Calculator.js">
+    <Content Include="JasmineTests\WithHtml\Scripts\Calculator.js">
       <DependentUpon>calculator.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\calculatorSumFailSpec.js">
+    <Content Include="JasmineTests\WithHtml\ScriptTests\calculatorSumFailSpec.js">
       <DependentUpon>calculatorSumFailSpec.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\calculatorSumPassSpec.js">
+    <Content Include="JasmineTests\WithHtml\ScriptTests\calculatorSumPassSpec.js">
       <DependentUpon>calculatorSumPassSpec.coffee</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="JasmineTests\ScriptTests\WrongSyntax2.js">
+    <None Include="JasmineTests\WithHtml\ScriptTests\WrongSyntax2.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="JasmineTests\testlibs\jasmine-1.2.0\jasmine-html.js">
@@ -248,7 +248,7 @@
     <Content Include="JasmineTests\testlibs\phantom-jasmine\console-runner.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="JasmineTests\ScriptTests\WrongSyntax.js">
+    <None Include="JasmineTests\WithHtml\ScriptTests\WrongSyntax.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

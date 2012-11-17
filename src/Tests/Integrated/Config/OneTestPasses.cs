@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
@@ -15,7 +14,7 @@ namespace Tests.Integrated.Config
         [TestFixtureSetUp]
         public static void RunFiles()
         {
-            var configFile = Path.Combine(RunTestHelper.GetJasmineTestDirLocation(), "WithConfig", "config.js");
+            var configFile = Path.Combine(RunTestHelper.GetJasmineTestDirLocation("WithConfig"), "config.js");
             test = RunTestHelper.RunTestWithConfig(configFile);
             runSucceeded = test.Run();
         }

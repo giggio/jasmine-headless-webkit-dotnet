@@ -7,9 +7,9 @@ namespace Tests.Integrated
 {
     public class RunTestHelper
     {
-        public static string GetJasmineTestDirLocation()
+        public static string GetJasmineTestDirLocation(string extraPath = "")
         {
-            return Path.Combine(GetTestFilesLocation(), "JasmineTests");
+            return Path.Combine(GetTestFilesLocation(), "JasmineTests", extraPath);
         }
 
         public static string GetTestFilesLocation()
