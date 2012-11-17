@@ -20,14 +20,25 @@ namespace jasmine_headless_webkit_dotnet
             var jasmineDirectoryInfo = new DirectoryInfo(environment.GetJasmineDir(110));
             if (!jasmineDirectoryInfo.Exists) jasmineDirectoryInfo.Create();
 
-            File.WriteAllBytes(environment.GetPhantomJSExeFileLocation(), Properties.Resources.phantomjs_exe);
-            File.WriteAllBytes(environment.GetRunJasmineTestFileLocation(), Properties.Resources.run_jasmine_test_coffee);
-            File.WriteAllText(environment.GetJasmineConsoleRunnerJSFileLocation(110), Properties.Resources._110_console_runner_js);
-            File.WriteAllText(environment.GetJasmineJasmineHtmlJSFileLocation(110), Properties.Resources._110_jasmine_html_js);
-            File.WriteAllText(environment.GetJasmineJasmineCSSFileLocation(110), Properties.Resources._110_jasmine_css);
-            File.WriteAllText(environment.GetJasmineJasmineJSFileLocation(110), Properties.Resources._110_jasmine_js);
+            WriteIfDoesNotExist(environment.GetPhantomJSExeFileLocation(), Properties.Resources.phantomjs_exe);
+            WriteIfDoesNotExist(environment.GetRunJasmineTestFileLocation(), Properties.Resources.run_jasmine_test_coffee);
+            WriteIfDoesNotExist(environment.GetJasmineConsoleRunnerJSFileLocation(110), Properties.Resources._110_console_runner_js);
+            WriteIfDoesNotExist(environment.GetJasmineJasmineHtmlJSFileLocation(110), Properties.Resources._110_jasmine_html_js);
+            WriteIfDoesNotExist(environment.GetJasmineJasmineCSSFileLocation(110), Properties.Resources._110_jasmine_css);
+            WriteIfDoesNotExist(environment.GetJasmineJasmineJSFileLocation(110), Properties.Resources._110_jasmine_js);
         }
 
+        private void WriteIfDoesNotExist(string fileLocation, string fileContent)
+        {
+            if (File.Exists(fileLocation)) return;
+            File.WriteAllText(fileLocation, fileContent);
+        }
+
+        private void WriteIfDoesNotExist(string fileLocation, byte[] fileBytes)
+        {
+            if (File.Exists(fileLocation)) return;
+            File.WriteAllBytes(fileLocation, fileBytes);
+        }
     }
 
     public interface ITools

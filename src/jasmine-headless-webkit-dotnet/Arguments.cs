@@ -44,12 +44,21 @@ namespace jasmine_headless_webkit_dotnet
                 {
                     return RunType.HtmlFile;
                 }
+                if (IsConfigFileRun())
+                {
+                    return RunType.ConfigFile;
+                }
                 if (IsDefaultRun())
                 {
                     return RunType.Default;
                 }
                 return RunType.Help;
             }
+        }
+
+        private bool IsConfigFileRun()
+        {
+            return !string.IsNullOrWhiteSpace(ConfigFile);
         }
 
         private bool IsDefaultRun()

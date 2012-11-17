@@ -5,6 +5,7 @@ namespace jasmine_headless_webkit_dotnet
         Help,
         HtmlFile,
         JSFiles,
-        Default
+        Default,
+        ConfigFile
     }
 }

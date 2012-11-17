@@ -50,5 +50,11 @@ namespace Tests.Unit
             var args = new Arguments { SourceFiles = new string[1], TestFiles = new string[1] };
             args.RunType.Should().Be(RunType.JSFiles);
         }
+        [Test]
+        public void WithConfigFileShouldBeConfigFiles()
+        {
+            var args = new Arguments { ConfigFile = "aa"};
+            args.RunType.Should().Be(RunType.ConfigFile);
+        }
     }
 }

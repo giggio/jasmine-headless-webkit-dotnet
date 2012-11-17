@@ -24,6 +24,9 @@ namespace jasmine_headless_webkit_dotnet
                 case RunType.JSFiles:
                     phantomJS = new PhantomJSFromJSFiles(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.SourceFiles, args.TestFiles);
                     break;
+                case RunType.ConfigFile:
+                    phantomJS = new PhantomJSFromConfigFile(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut(), args.ConfigFile);
+                    break;
                 case RunType.Default:
                     phantomJS = new PhantomJSDefault(environment, environment.GetPhantomJSExeFileLocation(), environment.GetRunJasmineTestFileLocation(), args.VerbosityLevel, args.GetTimeOut());
                     break;
