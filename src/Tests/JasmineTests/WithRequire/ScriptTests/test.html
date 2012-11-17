@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Jasmine Spec Runner</title>
+
+    <link rel="stylesheet" type="text/css" href="../../testlibs/jasmine-1.1.0/jasmine.css">
+    <script type="text/javascript" src="../../testlibs/jasmine-1.1.0/jasmine.js"></script>
+    <script type="text/javascript" src="../../testlibs/jasmine-1.1.0/jasmine-html.js"></script>
+    <script type="text/javascript" src="../../testlibs/phantom-jasmine/console-runner.js"></script>
+    <script type="text/javascript" src="../../libs/require.js"></script>
+    <script type="text/javascript">
+        require.config({baseUrl:'../Scripts'});
+        window.onload = function() {
+            //require(['../ScriptTests/ExampleSpec'], function () {
+            require(['../ScriptTests/ExampleSpec', '../ScriptTests/ExampleModelWithTextSpec', '../ScriptTests/TextSpec'], function () {
+                var jasmineEnv = jasmine.getEnv();
+                jasmineEnv.updateInterval = 1000;
+                var trivialReporter = new jasmine.TrivialReporter();
+                jasmineEnv.addReporter(trivialReporter);
+                window.console_reporter = new jasmine.ConsoleReporter();
+                jasmineEnv.addReporter(console_reporter);
+                jasmineEnv.specFilter = function (spec) {
+                    return trivialReporter.specFilter(spec);
+                };
+                execJasmine();
+                function execJasmine() {
+                    jasmineEnv.execute();
+                }
+            });
+        };
+    </script>
+
+</head>
+<body>
+</body>
+</html>

@@ -88,10 +88,54 @@
     <Compile Include="Unit\GlobTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine-html.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine_favicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="JasmineTests\ScriptTests\Support\Jasmine.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="JasmineTests\WithConfig\config.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\Scripts\ExampleModel.js">
+      <DependentUpon>ExampleModel.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\Scripts\ExampleModelWithText.js">
+      <DependentUpon>ExampleModelWithText.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\libs\require.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\Scripts\template\ExampleTemplate.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\Scripts\text.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\ScriptTests\ExampleModelWithTextSpec.js">
+      <DependentUpon>ExampleModelWithTextSpec.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\ScriptTests\ExampleSpec.js">
+      <DependentUpon>ExampleSpec.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\ScriptTests\TextSpec.js">
+      <DependentUpon>TextSpec.coffee</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JasmineTests\WithRequire\ScriptTests\test.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
@@ -127,7 +171,22 @@
     <None Include="JasmineTests\ScriptTests\calculatorSumFailSpec.coffee">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\MIT.LICENSE" />
+    <None Include="JasmineTests\testlibs\jasmine-1.2.0\MIT.LICENSE" />
+    <None Include="JasmineTests\WithRequire\ScriptTests\ExampleSpec.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JasmineTests\WithRequire\Scripts\ExampleModel.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JasmineTests\WithRequire\Scripts\ExampleModelWithText.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JasmineTests\WithRequire\ScriptTests\TextSpec.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="JasmineTests\WithRequire\ScriptTests\ExampleModelWithTextSpec.coffee">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -176,28 +235,16 @@
     <None Include="JasmineTests\ScriptTests\WrongSyntax2.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine-html.js">
+    <Content Include="JasmineTests\testlibs\jasmine-1.2.0\jasmine-html.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.css">
+    <Content Include="JasmineTests\testlibs\jasmine-1.2.0\jasmine.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine.js">
+    <Content Include="JasmineTests\testlibs\jasmine-1.2.0\jasmine.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.1.0\jasmine_favicon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine-html.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\jasmine-1.2.0\jasmine.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="JasmineTests\ScriptTests\lib\phantom-jasmine\console-runner.js">
+    <Content Include="JasmineTests\testlibs\phantom-jasmine\console-runner.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="JasmineTests\ScriptTests\WrongSyntax.js">
