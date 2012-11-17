@@ -1,24 +1,24 @@
 ﻿using Args;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Unit
 {
-    [TestClass]
+    [TestFixture]
     public class BindsToArrayOfStrings
     {
         private static IModelBindingDefinition<Arguments> bindingDefinition;
 
-        [ClassInitialize]
-        public static void Binding(TestContext testContext)
+        [TestFixtureSetUp]
+        public static void Binding()
         {
             bindingDefinition = Args.Configuration.Configure<Arguments>()
                 .AsFluent()
                 .ParsesArgumentsWith(typeof(string[]), new ArrayOfStringConverter())
                 .Initialize();
         }
-        [TestMethod]
+        [Test]
         public void ConverterBinds()
         {
             bindingDefinition.TypeConverters.Count.Should().Be(1);
@@ -26,14 +26,14 @@ namespace Tests.Unit
             bindingDefinition.TypeConverters[typeof(string[])].Should().BeOfType<ArrayOfStringConverter>();
         }
 
-        [TestMethod]
+        [Test]
         public void SourceFilesBindsCorrectly()
         {
             var args = new[] { "/SourceFiles", "\"abc,def\"" };
             var argsConverted = bindingDefinition.CreateAndBind(args);
             argsConverted.SourceFiles.Length.Should().Be(2);
         }
-        [TestMethod]
+        [Test]
         public void TimeoutBindsCorrectly()
         {
             var args = new[] { "/Timeout", "1" };

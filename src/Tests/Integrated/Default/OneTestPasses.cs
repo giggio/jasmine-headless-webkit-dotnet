@@ -1,37 +1,37 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated.Default
 {
-    [TestClass]
+    [TestFixture]
     public class OneTestPasses
     {
         private static bool runSucceeded;
         private static Test test;
 
-        [ClassInitialize]
-        public static void RunFiles(TestContext testContext)
+        [TestFixtureSetUp]
+        public static void RunFiles()
         {
-            var jasmineTestDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests");
-            test = RunTestHelper.RunTestWithDefault(jasmineTestDir);
+            test = RunTestHelper.RunTestWithDefault(RunTestHelper.GetJasmineTestDirLocation());
             runSucceeded = test.Run();
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPass()
         {
             runSucceeded.Should().BeTrue();
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfSuccessesShouldBe1()
         {
             test.NumberOfSuccesses.Should().Be(1);
         }
-        [TestMethod]
+        [Test]
         public void NumberOfFailuresShouldBe0()
         {
             test.NumberOfFailures.Should().Be(0);

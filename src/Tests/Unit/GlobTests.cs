@@ -3,15 +3,16 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using Tests.Integrated;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Unit
 {
-    [TestClass]
+    [TestFixture]
     public class GlobTests
     {
-        [TestMethod]
+        [Test]
         public void CanGetAllTextFilesInAllSubdirs()
         {
             const string pattern = "**/*.txt";
@@ -19,7 +20,7 @@ namespace Tests.Unit
             matches.Count.Should().Be(5);
         }
 
-        [TestMethod]
+        [Test]
         public void CanGetAllTextFilesThatStartWithFileInAllSubdirs()
         {
             const string pattern = "**/File*.txt";
@@ -27,14 +28,14 @@ namespace Tests.Unit
             matches.Count.Should().Be(4);
         }
 
-        [TestMethod]
+        [Test]
         public void CanGetAllTextFilesThatStartWithFileInSubDirsThatStartWithDir()
         {
             const string pattern = "**/Dir?/File*.txt";
             var matches = GetMatches(pattern);
             matches.Count.Should().Be(4);
         }
-        [TestMethod]
+        [Test]
         public void CanGetZeroTextFilesThatStartWithFileInSubDirsThatStartWithNonExistentName()
         {
             const string pattern = "**/WrongDir*/File*.txt";
@@ -42,7 +43,7 @@ namespace Tests.Unit
             matches.Count.Should().Be(0);
         }
 
-        [TestMethod]
+        [Test]
         public void CanGetAllTextFilesNamedOtherFileInSubdirDirA()
         {
             const string pattern = "**/dirA/OtherFile?.*";
@@ -50,7 +51,7 @@ namespace Tests.Unit
             matches.Count.Should().Be(2);
         }
 
-        [TestMethod]
+        [Test]
         public void CanGetAllTextFilesNamedOtherFileLogInSubdirDirA()
         {
             const string pattern = "**/dirA/OtherFile1.log";
@@ -69,7 +70,7 @@ namespace Tests.Unit
 
         private static string GetGlobTestDir()
         {
-            var globTestDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "GlobTestFiles");
+            var globTestDir = Path.Combine(RunTestHelper.GetTestFilesLocation(), "GlobTestFiles");
             return globTestDir;
         }
     }

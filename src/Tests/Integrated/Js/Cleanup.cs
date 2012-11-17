@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Reflection;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated.Js
 {
-    [TestClass]
+    [TestFixture]
     public class Cleanup
     {
 
@@ -15,13 +15,13 @@ namespace Tests.Integrated.Js
         private static string toolsDir;
         private static DirectoryInfo toolsDirInfo;
 
-        [ClassInitialize]
-        public static void RunFiles(TestContext testContext)
+        [TestFixtureSetUp]
+        public static void RunFiles()
         {
 
-            var sourceFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "Scripts", "calculator.coffee");
+            var sourceFile = Path.Combine(RunTestHelper.GetJasmineTestDirLocation(), "Scripts", "calculator.coffee");
             var sourceFiles = new[] { sourceFile };
-            var testFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests", "ScriptTests", "calculatorSumPassSpec.js");
+            var testFile = Path.Combine(RunTestHelper.GetJasmineTestDirLocation(), "ScriptTests", "calculatorSumPassSpec.js");
             var testFiles = new[] { testFile };
             test = RunTestHelper.RunTestWithJSFiles(sourceFiles, testFiles);
             toolsDir = test.Tools.Environment.GetToolsDir();
@@ -36,28 +36,28 @@ namespace Tests.Integrated.Js
             if (Directory.Exists(toolsDir)) Directory.Delete(toolsDir, true);
         }
 
-        [TestMethod]
+        [Test]
         public void AfterTestJSTempFilesAreRemoved()
         {
             var jsFiles = toolsDirInfo.GetFiles("*.js");
             jsFiles.Length.Should().Be(0);
         }
 
-        [TestMethod]
+        [Test]
         public void AfterTestHtmlTempFilesAreRemoved()
         {
             var htmlFiles = toolsDirInfo.GetFiles("*.html");
             htmlFiles.Length.Should().Be(0);
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPass()
         {
             runSucceeded.Should().BeTrue();
         }
 
 
-        [TestMethod]
+        [Test]
         public void NumberOfSuccessesShouldBe1()
         {
             test.NumberOfSuccesses.Should().Be(1);

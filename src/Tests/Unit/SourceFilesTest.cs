@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Unit
 {
-    [TestClass]
+    [TestFixture]
     public class SourceFilesTest
     {
-        [TestMethod]
+        [Test]
         public void WhenCompiledFixesFileNamesAndPathsCorrectly()
         {
             var files = new[] {@"d:\a\f1.js", @"d:\a\f2.coffee"};

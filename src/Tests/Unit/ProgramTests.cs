@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Unit
 {
-    [TestClass]
+    [TestFixture]
     public class ProgramTests : BaseTest
     {
-        [TestMethod]
+        [Test]
         public void SimpleRunShouldSucceed()
         {
             var jasmineRunner = automoqer.Create<JasmineRunner>();
@@ -15,7 +15,7 @@ namespace Tests.Unit
             var runSucceeded = jasmineRunner.Run();
             runSucceeded.Should().BeTrue();
         }
-        [TestMethod]
+        [Test]
         public void FailedRunShouldFail()
         {
             var jasmineRunner = automoqer.Create<JasmineRunner>();

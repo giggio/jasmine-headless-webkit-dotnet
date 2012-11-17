@@ -1,10 +1,22 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated
 {
     public class RunTestHelper
     {
+        public static string GetJasmineTestDirLocation()
+        {
+            return Path.Combine(GetTestFilesLocation(), "JasmineTests");
+        }
+
+        public static string GetTestFilesLocation()
+        {
+            return Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+        }
+
         public static Test RunTestWithHtmlFile(string jasmineTestDir, string fileName)
         {
             var args = new Arguments

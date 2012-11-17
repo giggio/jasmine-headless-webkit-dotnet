@@ -1,24 +1,23 @@
 ﻿using System.IO;
 using System.Reflection;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Tests.Integrated.Html
 {
-    [TestClass]
+    [TestFixture]
     public class OneTestPasses
     {
         private static bool runSucceeded;
 
-        [ClassInitialize]
-        public static void RunFiles(TestContext testContext)
+        [TestFixtureSetUp]
+        public static void RunFiles()
         {
-            var jasmineTestDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "JasmineTests");
-            var test = RunTestHelper.RunTestWithHtmlFile(jasmineTestDir, "OneSpecPass1.1.0.html");
+            var test = RunTestHelper.RunTestWithHtmlFile(RunTestHelper.GetJasmineTestDirLocation(), "OneSpecPass1.1.0.html");
             runSucceeded = test.Run();
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPass()
         {
             runSucceeded.Should().BeTrue();

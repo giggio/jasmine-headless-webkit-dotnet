@@ -1,5 +1,5 @@
 using AutoMoq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Tests.Unit
 {
@@ -7,7 +7,7 @@ namespace Tests.Unit
     {
         protected AutoMoqer automoqer;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             automoqer = new AutoMoqer();

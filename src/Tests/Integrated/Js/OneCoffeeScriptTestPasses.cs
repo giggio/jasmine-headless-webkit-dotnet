@@ -1,18 +1,18 @@
 ﻿using System.IO;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated.Js
 {
-    [TestClass]
+    [TestFixture]
     public class OneCoffeeScriptTestPasses
     {
         private static bool runSucceeded;
         private static Test test;
 
-        [ClassInitialize]
-        public static void RunFiles(TestContext testContext)
+        [TestFixtureSetUp]
+        public static void RunFiles()
         {
             var sourceFile = Path.Combine("JasmineTests", "Scripts", "calculator.coffee");
             var sourceFiles = new[] {sourceFile};
@@ -22,17 +22,17 @@ namespace Tests.Integrated.Js
             runSucceeded = test.Run();
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPass()
         {
             runSucceeded.Should().BeTrue();
         }
-        [TestMethod]
+        [Test]
         public void VerifySuccesses()
         {
             test.NumberOfSuccesses.Should().Be(1);
         }
-        [TestMethod]
+        [Test]
         public void VerifyNoFailures()
         {
             test.NumberOfFailures.Should().Be(0);

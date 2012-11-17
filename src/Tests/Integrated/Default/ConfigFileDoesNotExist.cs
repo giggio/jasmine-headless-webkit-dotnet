@@ -1,15 +1,14 @@
 ﻿using System.IO;
 using System.Reflection;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using jasmine_headless_webkit_dotnet;
 
 namespace Tests.Integrated.Default
 {
-    [TestClass]
+    [TestFixture]
     public class ConfigFileDoesNotExist
     {
-        [TestMethod]
+        [Test]
         public void GetsAnExceptionWhenConfigFileDoesNotExist()
         {
             var jasmineTestDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "FolderThatDoesNotExist");
