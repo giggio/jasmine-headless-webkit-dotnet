@@ -8,7 +8,7 @@
         <owners>Giovanni Bassi</owners>
         <projectUrl>https://github.com/giggio/jasmine-headless-webkit-dotnet/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A Jasmine runner based on PhantomJS and therefore webkit.</description>
+        <description>A headless Jasmine runner based on PhantomJS and therefore webkit. It does not open a browser window to run the tests, and is self contained, not depending on any other installation like Qt, WebKit or any other library. The only dependency is .NET 4.0.</description>
         <releaseNotes>Documentation is to be developed. Right now, read the tests on the project.</releaseNotes>
         <tags>jasmine headless webkit phantomjs phantom dotnet test javascript coffeescript bdd tdd web tests</tags>
     </metadata>
