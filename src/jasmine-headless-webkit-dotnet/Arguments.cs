@@ -14,14 +14,17 @@ namespace jasmine_headless_webkit_dotnet
             VerbosityLevel = VerbosityLevel.Normal;
         }
         [Description("This help text.")]
+        [ArgsMemberSwitch("Help", "H", "?")]
         public bool Help { get; set; }
         [Description("The test archive.")]
         public string FileName { get; set; }
         [Description("The time to wait for the tests to complete before stopping.")]
+        [ArgsMemberSwitch("Timeout")]
         public int? Timeout { get; set; }
         [Description("The verbosity level. Defaults to normal. Possible values: normal, verbose.")]
         public VerbosityLevel VerbosityLevel { get; set; }
         [Description("Javascript files to test.")]
+        [ArgsMemberSwitch("TestFiles", "T")]
         public string[] TestFiles { get; set; }
         [Description("Javascript source files.")]
         public string[] SourceFiles { get; set; }
