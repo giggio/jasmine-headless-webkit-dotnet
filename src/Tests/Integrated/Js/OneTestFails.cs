@@ -22,6 +22,12 @@ namespace Tests.Integrated.Js
             runSucceeded = test.Run();
         }
 
+        [TestFixtureTearDown]
+        public static void DisposePhantomJS()
+        {
+            test.PhantomJS.Dispose();
+        }
+
         [Test]
         public void VerifyFailure()
         {

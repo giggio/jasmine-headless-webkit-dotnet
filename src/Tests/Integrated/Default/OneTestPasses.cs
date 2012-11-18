@@ -17,6 +17,12 @@ namespace Tests.Integrated.Default
             runSucceeded = test.Run();
         }
 
+        [TestFixtureTearDown]
+        public static void DisposePhantomJS()
+        {
+            test.PhantomJS.Dispose();
+        }
+
         [Test]
         public void VerifyPass()
         {
