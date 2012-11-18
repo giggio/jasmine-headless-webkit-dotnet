@@ -86,7 +86,6 @@
     <Compile Include="Unit\ArgumentsTests.cs" />
     <Compile Include="Unit\ProgramTests.cs" />
     <Compile Include="Unit\SourceFilesTest.cs" />
-    <Compile Include="Unit\GlobTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JasmineTests\testlibs\jasmine-1.1.0\jasmine-html.js">
@@ -140,21 +139,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
-    <Content Include="GlobTestFiles\dirA\OtherFile1.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="GlobTestFiles\dirA\OtherFile1.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="GlobTestFiles\dirA\File1.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="GlobTestFiles\dirA\File2.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="GlobTestFiles\dirB\File2.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="JasmineTests\WithHtml\Scripts\calculator.coffee">
       <Compile>True</Compile>
       <Minify>True</Minify>
@@ -197,21 +181,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GlobTestFiles\dirB\File1.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="GlobTestFiles\dirA\File2.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GlobTestFiles\dirA\File1.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GlobTestFiles\dirB\File1.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GlobTestFiles\dirB\File2.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="JasmineTests\WithHtml\OneSpecFail.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
