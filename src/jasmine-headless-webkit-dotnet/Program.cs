@@ -8,9 +8,9 @@ namespace jasmine_headless_webkit_dotnet
         static int Main(string[] argumentsArray)
         {
             var args = GetArguments(argumentsArray);
-            if (args.RunType == RunType.Help)
+            if (args == null || args.RunType == RunType.Help)
             {
-                args.WriteHelp();
+                Arguments.WriteHelp();
                 return 1;
             }
             var environment = new LocalEnvironment();
@@ -22,7 +22,7 @@ namespace jasmine_headless_webkit_dotnet
             catch (JasmineConfigurationFileDoesNotExistException)
             {
                 WriteError("Jasmine configuration file for default run could not be found at '{0}'.", environment.GetJasmineConfigurationFileLocation());
-                args.WriteHelp();
+                Arguments.WriteHelp();
                 return 1;
             }
             var program = new JasmineRunner(new Tools(environment), phantomJS);
@@ -32,11 +32,18 @@ namespace jasmine_headless_webkit_dotnet
 
         private static Arguments GetArguments(string[] argumentsArray)
         {
-            var args = Args.Configuration.Configure<Arguments>().AsFluent()
-                .ParsesArgumentsWith(typeof (string[]), new ArrayOfStringConverter())
-                .Initialize()
-                .CreateAndBind(argumentsArray);
-            return args;
+            try
+            {
+                var args = Args.Configuration.Configure<Arguments>().AsFluent()
+                    .ParsesArgumentsWith(typeof(string[]), new ArrayOfStringConverter())
+                    .Initialize()
+                    .CreateAndBind(argumentsArray);
+                return args;
+            }
+            catch (InvalidArgsFormatException)
+            {
+                return null;
+            }
         }
 
         private static void WriteError(string text, params object[] args)

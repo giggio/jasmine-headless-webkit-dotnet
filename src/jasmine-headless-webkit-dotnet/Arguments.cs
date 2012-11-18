@@ -91,7 +91,7 @@ namespace jasmine_headless_webkit_dotnet
             return Timeout ?? 60;
         }
 
-        public void WriteHelp()
+        public static void WriteHelp()
         {
             var help = new HelpProvider().GenerateModelHelp(Configuration.Configure<Arguments>());
             var f = new ConsoleHelpFormatter(Console.BufferWidth, 1, 5);
