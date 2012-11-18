@@ -26,18 +26,19 @@ You may also supply only the test files and source files, using JavaScript or Co
 This is the help output:
 
 	Jasmine Runner based on .NET
-	<command> [/Help] [/FileName] [/Timeout] [/VerbosityLevel] [/TestFiles] [/SourceFiles]
+	<command> [/Help] [/FileName] [/Timeout] [/VerbosityLevel] [/TestFiles] [/SourceFiles] [/ConfigFile]
 
-	[/Help|/H]               This help text.
+	[/Help|/H|/?]            This help text.
 	[/FileName|/F]           The test archive.
-	[/Timeout|/Ti]           The time to wait for the tests to complete before stopping.
+	[/Timeout]               The time to wait for the tests to complete before stopping.
 	[/VerbosityLevel|/V]     The verbosity level. Defaults to normal. Possible values: normal, verbose.
-	[/TestFiles|/Te]         Javascript files to test.
+	[/TestFiles|/T]          Javascript files to test.
 	[/SourceFiles|/S]        Javascript source files.
+	[/ConfigFile|/C]         Configuration file.
 
 ## Install via Nuget:
 
-    Install-Package jasmine-headless-webkit-dotnet -Pre
+    Install-Package jasmine-headless-webkit-dotnet
 
 The package can be found here: [http://nuget.org/packages/jasmine-headless-webkit-dotnet](http://nuget.org/packages/jasmine-headless-webkit-dotnet)
 
