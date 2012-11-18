@@ -13,13 +13,20 @@ It may be used without any parameters and a configuration file located on Script
 	
 	jasmine-headless-webkit-dotnet
 
-You may use JavaScript or CoffeeScript when you use the runner without any parameters. Please see the [example test file](https://github.com/giggio/jasmine-headless-webkit-dotnet/blob/master/src/Tests/JasmineTests/ScriptTests/Support/Jasmine.js) for better understanding.
+You may use JavaScript or CoffeeScript when you use the runner without any parameters. Please see the [example test file](https://github.com/giggio/jasmine-headless-webkit-dotnet/blob/master/src/Tests/JasmineTests/WithHtml/ScriptTests/Support/Jasmine.js) for better understanding.
+
+You may also configure the test run, if you would like to change the convention above. Just supply the config file using the /c parameter (or it's long form, /configfile):
+
+	jasmine-headless-webkit-dotnet /c config.js
+	jasmine-headless-webkit-dotnet /configfile config.js
+
+When you run it like this, all the paths are relative to the config file, not to where the runner is run from. The syntax uses [glob](http://en.wikipedia.org/wiki/Glob_(programming)), through the [Globdir](https://github.com/giggio/globdir) nuget.
 
 You may supply an html file to be tested against like this:
 	
 	jasmine-headless-webkit-dotnet /Filename mytestfile.html
 
-You may also supply only the test files and source files, using JavaScript or CoffeeScript:
+You may supply only the test files and source files, using JavaScript or CoffeeScript:
 
 	jasmine-headless-webkit-dotnet /TestFiles spec1.coffee /SourceFiles source1.coffee
 
