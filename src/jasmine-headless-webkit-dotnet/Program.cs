@@ -11,7 +11,7 @@ namespace jasmine_headless_webkit_dotnet
             if (args == null || args.RunType == RunType.Help)
             {
                 Arguments.WriteHelp();
-                return 1;
+                return ExitCode.ErrorOnArgument;
             }
             var environment = new LocalEnvironment();
             IPhantomJS phantomJS;
@@ -23,11 +23,11 @@ namespace jasmine_headless_webkit_dotnet
             {
                 WriteError("Jasmine configuration file for default run could not be found at '{0}'.", environment.GetJasmineConfigurationFileLocation());
                 Arguments.WriteHelp();
-                return 1;
+                return ExitCode.JasmineConfigurationFileForDefaultRunCouldNotBeFound;
             }
             var program = new JasmineRunner(new Tools(environment), phantomJS);
             var runSucceeded = program.Run();
-            return runSucceeded ? 0 : 1;
+            return runSucceeded ? ExitCode.TestsPassed : ExitCode.TestsFailed;
         }
 
         private static Arguments GetArguments(string[] argumentsArray)
@@ -64,6 +64,13 @@ namespace jasmine_headless_webkit_dotnet
                 Console.WriteLine(text, args);
             }
             Console.ForegroundColor = originalColor;
+        }
+        private struct ExitCode
+        {
+            public const int TestsPassed = 0;
+            public const int TestsFailed = 1;
+            public const int ErrorOnArgument = 2;
+            public const int JasmineConfigurationFileForDefaultRunCouldNotBeFound = 3;
         }
     }
 }
