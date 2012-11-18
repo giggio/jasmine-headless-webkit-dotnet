@@ -27,6 +27,7 @@ namespace jasmine_headless_webkit_dotnet
             }
             var program = new JasmineRunner(new Tools(environment), phantomJS);
             var runSucceeded = program.Run();
+            phantomJS.Dispose();
             return runSucceeded ? ExitCode.TestsPassed : ExitCode.TestsFailed;
         }
 
