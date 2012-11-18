@@ -20,7 +20,7 @@ You may also configure the test run, if you would like to change the convention 
 	jasmine-headless-webkit-dotnet /c config.js
 	jasmine-headless-webkit-dotnet /configfile config.js
 
-When you run it like this, all the paths are relative to the config file, not to where the runner is run from. The syntax uses [glob](http://en.wikipedia.org/wiki/Glob_(programming)), through the [Globdir](https://github.com/giggio/globdir) nuget.
+When you run it like this, all the paths are relative to the config file, not to where the runner is run from. The syntax uses [glob](http://en.wikipedia.org/wiki/Glob_(programming\)), through the [Globdir](https://github.com/giggio/globdir) [nuget](https://nuget.org/packages/globdir/).
 
 You may supply an html file to be tested against like this:
 	
