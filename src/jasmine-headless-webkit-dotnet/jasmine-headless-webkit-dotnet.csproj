@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="ArrayOfStringConverter.cs" />
+    <Compile Include="CoffeeScriptSourceCompiler.cs" />
+    <Compile Include="ISourceCompiler.cs" />
     <Compile Include="JasmineConfig.cs" />
     <Compile Include="PhantomJSFromConfigFile.cs" />
     <Compile Include="JasmineConfigurationFileDoesNotExistException.cs" />
