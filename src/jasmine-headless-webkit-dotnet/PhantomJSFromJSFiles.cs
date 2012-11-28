@@ -25,7 +25,7 @@ namespace jasmine_headless_webkit_dotnet
         protected override string BuildArgs()
         {
             FixRelativeLocations();
-            CreateJSFromCoffeeFiles();
+            CreateJsFiles();
             CreateHtmlTestFile();
             var fullHtmlTestFileLocationCorrected = fullHtmlTestFileLocation.Replace('\\', '/');
             var phantomArgs = string.Format("{0} file:///{1}", jasmineTestFileLocation, fullHtmlTestFileLocationCorrected);
@@ -38,7 +38,7 @@ namespace jasmine_headless_webkit_dotnet
             testFiles = FixRelativeLocation(testFiles);
         }
         
-        private void CreateJSFromCoffeeFiles()
+        private void CreateJsFiles()
         {
             sourceFiles = new SourceFiles(sourceFiles).Compile(environment.GetToolsDir());
             testFiles = new SourceFiles(testFiles).Compile(environment.GetToolsDir());            

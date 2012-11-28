@@ -23,7 +23,7 @@ namespace jasmine_headless_webkit_dotnet
             for (int i = 0; i < files.Length; i++)
             {
                 var file = files[i];
-                if (!file.IsCoffee())
+                if (!file.IsAccepted())
                 {
                     jsFiles[i] = file.Path;
                     continue;

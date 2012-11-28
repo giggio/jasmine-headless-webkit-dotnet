@@ -1,42 +1,81 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
-using CoffeeSharp;
+using System.Linq;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.Reflection;
 
 namespace jasmine_headless_webkit_dotnet
 {
     public class SourceFile
     {
-        public SourceFile(string path)
+        [ImportMany(typeof(ISourceCompiler))]
+        private IEnumerable<ISourceCompiler> compilers { get; set; }
+
+        private CompositionContainer _container;
+
+        public SourceFile()
+        {
+            var catalog = new AggregateCatalog();
+            _container = new CompositionContainer(catalog);
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+
+            if (AppDomain.CurrentDomain.ShadowCopyFiles)
+                catalog.Catalogs.Add(new DirectoryCatalog(System.IO.Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath)));
+            else
+                catalog.Catalogs.Add(new DirectoryCatalog(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            var batch = new CompositionBatch();
+            batch.AddPart(this); 
+
+            try
+            {
+                this._container.Compose(batch); 
+            }
+            catch (CompositionException compositionException)
+            {
+                throw new Exception("Error loading souc compilers.", compositionException);
+            }
+        }
+
+        public SourceFile(string path) : this()
         {
             Path = path;
         }
-        public string CompiledPath { get; private set; }
-        public string Path { get; private set; }
-        public bool IsCoffee()
+
+        public bool IsAccepted()
         {
-            return Path.EndsWith(".coffee", StringComparison.CurrentCultureIgnoreCase);
+            return Path.EndsWith(".js", StringComparison.CurrentCultureIgnoreCase) || compilers.Any(c => c.Accept(Path));
         }
 
-        private static readonly CoffeeScriptEngine coffeeScriptEngine = new CoffeeScriptEngine();
+        private string Compile()
+        {
+            if (IsAccepted())
+            {
+                return Path.EndsWith(".js", StringComparison.CurrentCultureIgnoreCase) 
+                    ? File.ReadAllText(Path) 
+                    : compilers.FirstOrDefault(c => c.Accept(Path)).Compile(Path);
+            }
+            throw new Exception("attempt to compile an invalid file.");
+        }
+
+        public string CompiledPath { get; private set; }
+        public string Path { get; private set; }
 
         public virtual void Compile(string directory)
         {
             CreateCompiledPath(directory);
-            WriteCoffeeScriptContentToFile();
+            WriteCompiledContentToFile();
         }
 
-        private void WriteCoffeeScriptContentToFile()
+        private void WriteCompiledContentToFile()
         {
-            using (var reader = new StreamReader(Path))
-            {
-                var compiledCoffeeScript = coffeeScriptEngine.Compile(reader.ReadToEnd());
-                File.WriteAllText(CompiledPath, compiledCoffeeScript);
-            }
+            File.WriteAllText(CompiledPath, Compile());
         }
 
         protected void CreateCompiledPath(string directory)
         {
-            if (!IsCoffee()) throw new InvalidOperationException("Can only compile coffeescript files.");
+            if (!IsAccepted()) throw new InvalidOperationException("attempt to compile an invalid file.");
             var jsFileName = System.IO.Path.GetFileNameWithoutExtension(Path) + "-" + new Random().Next(0, 1000000) + "." + "js";
             CompiledPath = System.IO.Path.Combine(directory, jsFileName);
         }
