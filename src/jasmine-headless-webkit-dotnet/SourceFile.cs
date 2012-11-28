@@ -2,17 +2,50 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CoffeeSharp;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.Reflection;
 
 namespace jasmine_headless_webkit_dotnet
 {
     public class SourceFile
     {
-        private List<ISourceCompiler> _compilers = new List<ISourceCompiler> {new CoffeeScriptSourceCompiler()};
+        [ImportMany(typeof(ISourceCompiler))]
+        private IEnumerable<ISourceCompiler> compilers { get; set; }
+
+        private CompositionContainer _container;
+
+        public SourceFile()
+        {
+            var catalog = new AggregateCatalog();
+            _container = new CompositionContainer(catalog);
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+
+            if (AppDomain.CurrentDomain.ShadowCopyFiles)
+                catalog.Catalogs.Add(new DirectoryCatalog(System.IO.Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath)));
+            else
+                catalog.Catalogs.Add(new DirectoryCatalog(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            var batch = new CompositionBatch();
+            batch.AddPart(this); 
+
+            try
+            {
+                this._container.Compose(batch); 
+            }
+            catch (CompositionException compositionException)
+            {
+                throw new Exception("Error loading souc compilers.", compositionException);
+            }
+        }
+
+        public SourceFile(string path) : this()
+        {
+            Path = path;
+        }
 
         public bool IsAccepted()
         {
-            return Path.EndsWith(".js", StringComparison.CurrentCultureIgnoreCase) || _compilers.Any(c => c.Accept(Path));
+            return Path.EndsWith(".js", StringComparison.CurrentCultureIgnoreCase) || compilers.Any(c => c.Accept(Path));
         }
 
         private string Compile()
@@ -21,14 +54,9 @@ namespace jasmine_headless_webkit_dotnet
             {
                 return Path.EndsWith(".js", StringComparison.CurrentCultureIgnoreCase) 
                     ? File.ReadAllText(Path) 
-                    : _compilers.FirstOrDefault(c => c.Accept(Path)).Compile(Path);
+                    : compilers.FirstOrDefault(c => c.Accept(Path)).Compile(Path);
             }
             throw new Exception("attempt to compile an invalid file.");
-        }
-
-        public SourceFile(string path)
-        {
-            Path = path;
         }
 
         public string CompiledPath { get; private set; }
@@ -47,7 +75,7 @@ namespace jasmine_headless_webkit_dotnet
 
         protected void CreateCompiledPath(string directory)
         {
-            if (!IsAccepted()) throw new InvalidOperationException("Can only compile coffeescript files.");
+            if (!IsAccepted()) throw new InvalidOperationException("attempt to compile an invalid file.");
             var jsFileName = System.IO.Path.GetFileNameWithoutExtension(Path) + "-" + new Random().Next(0, 1000000) + "." + "js";
             CompiledPath = System.IO.Path.Combine(directory, jsFileName);
         }

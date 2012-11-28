@@ -38,6 +38,7 @@ namespace jasmine_headless_webkit_dotnet
                 Console.WriteLine("Exception when running phantom:\n{0}", exception);
                 return false;
             }
+            return true;
         }
 
         private bool WaitProcessToComplete(Process phantomProcess)

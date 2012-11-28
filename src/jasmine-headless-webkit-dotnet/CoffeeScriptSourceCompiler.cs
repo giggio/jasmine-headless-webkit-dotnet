@@ -1,12 +1,14 @@
 using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using CoffeeSharp;
 
 namespace jasmine_headless_webkit_dotnet
 {
+    [Export(typeof(ISourceCompiler))]
     public class CoffeeScriptSourceCompiler : ISourceCompiler
     {
-        private static readonly CoffeeScriptEngine coffeeScriptEngine = new CoffeeScriptEngine();
+        private static readonly CoffeeScriptEngine CoffeeScriptEngine = new CoffeeScriptEngine();
 
         public bool Accept(string file)
         {
@@ -24,8 +26,7 @@ namespace jasmine_headless_webkit_dotnet
 
                 using (var reader = new StreamReader(file))
                 {
-                    var compiledCoffeeScript = coffeeScriptEngine.Compile(reader.ReadToEnd());
-                    return compiledCoffeeScript;
+                    return CoffeeScriptEngine.Compile(reader.ReadToEnd());
                 }
             }
             throw new Exception("attempt to compile an invalid file.");

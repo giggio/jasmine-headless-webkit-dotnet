@@ -16,7 +16,7 @@ namespace Tests.Unit
             var files = new[] {@"d:\a\f1.js", @"d:\a\f2.coffee"};
             var sourceFiles = new SourceFilesStub(files);
             var jsFiles = sourceFiles.Compile(@"c:\temp");
-            jsFiles[0].Should().Be(files[0]);
+            Regex.Match(jsFiles[0], @"c:\\temp\\f1-\d+.js").Value.Should().Be(jsFiles[0]);
             Regex.Match(jsFiles[1], @"c:\\temp\\f2-\d+.js").Value.Should().Be(jsFiles[1]);
         }
 
